@@ -2,45 +2,45 @@ import React from 'react';
 
 export const MarqueeTicker: React.FC = () => {
   const items1 = [
-    '162 COLOR PALETTES',
-    'NO BROWSER TABS',
+    'FIRST-CLASS NOTE EDITOR',
+    'ZERO BROWSER TABS',
     'CONNECTED STICKY NOTES',
     'LOCAL-FIRST SPEED',
     'APP.SMRITINOTES.SITE',
-    'HANDCRAFTED BY SURIYA PRAKASH',
     'SPATIAL CLARITY',
-    'ZERO CLUTTER',
+    '162 CURATED COLORWAYS',
+    'DISTRACTION-FREE WRITING',
   ];
 
   const items2 = [
-    'PINK RIOT',
+    'PAPER INK',
     'COBALT BLOCK',
     'MINT SLAB',
     'ORANGE CRUSH',
     'LILAC SLAP',
     'SKY SLAP',
-    'SMRITI PEACOCK & SUN',
-    'RICH MARKDOWN EDITOR',
+    'PEACOCK & GOLD',
+    'OFFLINE PRIVACY',
   ];
 
   return (
-    <div className="py-6 sm:py-8 bg-[#05080c] border-y border-[#1c1c1c] overflow-hidden space-y-3 select-none">
+    <div className="py-5 sm:py-6 bg-[#FAF7F2] border-y border-black/[0.06] overflow-hidden space-y-2.5 select-none">
       {/* Track 1: Forward */}
       <div className="flex w-fit animate-marquee whitespace-nowrap">
         {[...items1, ...items1, ...items1].map((text, idx) => (
-          <div key={idx} className="flex items-center mx-4 sm:mx-6 text-xs sm:text-sm font-mono tracking-wider font-semibold text-slate-400">
-            <span className="hover:text-white transition-colors">{text}</span>
-            <span className="mx-4 text-[#ed4a1c] font-black text-base">✦</span>
+          <div key={idx} className="flex items-center mx-4 sm:mx-6 text-xs sm:text-sm font-mono tracking-wider font-semibold text-[#666055]">
+            <span className="hover:text-[#141414] transition-colors">{text}</span>
+            <span className="mx-4 text-[#F59E0B] font-black text-sm">✦</span>
           </div>
         ))}
       </div>
 
-      {/* Track 2: Reverse with Neon Lime Accents */}
-      <div className="flex w-fit animate-marqueeReverse whitespace-nowrap opacity-75">
+      {/* Track 2: Reverse */}
+      <div className="flex w-fit animate-marqueeReverse whitespace-nowrap opacity-85">
         {[...items2, ...items2, ...items2].map((text, idx) => (
-          <div key={idx} className="flex items-center mx-4 sm:mx-6 text-xs sm:text-sm font-mono tracking-wider font-semibold text-slate-400">
-            <span className="hover:text-[#c6f432] transition-colors">{text}</span>
-            <span className="mx-4 text-[#c6f432] font-black text-base">✦</span>
+          <div key={idx} className="flex items-center mx-4 sm:mx-6 text-xs sm:text-sm font-mono tracking-wider font-semibold text-[#666055]">
+            <span className="hover:text-[#0F4C81] transition-colors">{text}</span>
+            <span className="mx-4 text-[#0F4C81] font-black text-sm">✦</span>
           </div>
         ))}
       </div>

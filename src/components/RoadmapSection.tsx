@@ -5,9 +5,10 @@ import {
   PenTool, 
   Bot, 
   ArrowUpRight, 
-  Vote
+  Vote,
+  Sparkles
 } from 'lucide-react';
-import { APP_REDIRECT_URL, CREATOR_NAME } from '../data/palettes';
+import { APP_REDIRECT_URL } from '../data/palettes';
 import { ThreeDCard } from './ThreeDCard';
 
 interface RoadmapSectionProps {
@@ -33,12 +34,11 @@ export const RoadmapSection: React.FC<RoadmapSectionProps> = ({ onOpenWaitlist }
     {
       id: 'cloud-sync',
       num: '01',
-      title: 'Cloud sync',
+      title: 'Cloud Sync',
       subtitle: 'Access your notes across devices and keep your work up to date.',
       stage: 'In Development',
-      badgeColor: 'text-sky-400 bg-sky-950/80 border-sky-500/30',
+      badgeColor: 'text-[#0F4C81] bg-[#0F4C81]/10 border-[#0F4C81]/20',
       icon: Cloud,
-      image: '/images/cloud-sync.jpg',
       bullets: [
         'End-to-end encrypted synchronization',
         'Instant multi-device handover (phone, tablet & desktop)',
@@ -48,27 +48,25 @@ export const RoadmapSection: React.FC<RoadmapSectionProps> = ({ onOpenWaitlist }
     {
       id: 'templates',
       num: '02',
-      title: 'Ready-to-use templates',
+      title: 'Ready-to-Use Templates',
       subtitle: 'Build timetables, daily planners, study schedules, project trackers, and more.',
       stage: 'In Design',
-      badgeColor: 'text-[#facc15] bg-amber-950/80 border-amber-500/30',
+      badgeColor: 'text-[#D97706] bg-[#F59E0B]/10 border-[#F59E0B]/20',
       icon: LayoutTemplate,
-      image: '/images/templates-planner.jpg',
       bullets: [
         'Student timetables & Cornell study schedules',
         'Daily habit planners & sprint roadmaps',
-        'One-click template marketplace and community sharing'
+        'One-click template creation and community sharing'
       ]
     },
     {
       id: 'sketching',
       num: '03',
-      title: 'Sketching & freehand drawing',
+      title: 'Sketching & Freehand Drawing',
       subtitle: 'Draw diagrams, sketch ideas, and combine handwritten thinking with your notes.',
       stage: 'Prototyping',
-      badgeColor: 'text-[#ed4a1c] bg-rose-950/80 border-rose-500/30',
+      badgeColor: 'text-[#E87A90] bg-[#E87A90]/10 border-[#E87A90]/20',
       icon: PenTool,
-      image: '/images/sketching-drawing.jpg',
       bullets: [
         'Infinite canvas vector engine with zero latency',
         'Apple Pencil & stylus pressure/tilt sensitivity',
@@ -78,12 +76,11 @@ export const RoadmapSection: React.FC<RoadmapSectionProps> = ({ onOpenWaitlist }
     {
       id: 'ai',
       num: '04',
-      title: 'AI-powered productivity',
+      title: 'AI-Powered Productivity',
       subtitle: 'Summarize notes, explore ideas, generate study materials, and turn information into actionable insights.',
       stage: 'Research & Testing',
-      badgeColor: 'text-[#c6f432] bg-emerald-950/80 border-emerald-500/30',
+      badgeColor: 'text-[#1B4332] bg-[#1B4332]/10 border-[#1B4332]/20',
       icon: Bot,
-      image: '/images/ai-productivity.jpg',
       bullets: [
         'Instant summaries and key takeaways extraction',
         'Generate flashcards & spaced repetition quizzes',
@@ -93,26 +90,26 @@ export const RoadmapSection: React.FC<RoadmapSectionProps> = ({ onOpenWaitlist }
   ];
 
   return (
-    <section id="roadmap" className="py-24 sm:py-32 relative bg-[#05080c] border-t border-[#1c1c1c] overflow-hidden">
+    <section id="roadmap" className="py-24 sm:py-32 relative bg-[#FAF7F2] border-t border-black/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* DOVV Section Header (Exact Copy from User Specification) */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-8 border-b border-[#1c1c1c]">
+        {/* DOVV Section Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-8 border-b border-black/[0.07]">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-mono text-xs text-[#ed4a1c] font-bold uppercase tracking-widest">
-                [ 05 // COMING TO SMRITI • ROADMAP ]
+              <span className="font-mono text-xs text-[#0F4C81] font-bold uppercase tracking-widest">
+                [ 05 // UPCOMING ROADMAP ]
               </span>
-              <span className="dovv-chip text-[#c6f432] text-xs py-0.5">
-                Upcoming Horizon
+              <span className="dovv-chip text-[#D97706] text-xs py-0.5 font-bold">
+                Coming Soon
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl font-archivo font-black text-white tracking-tight leading-[0.95] uppercase">
-              MORE THAN A PLACE<br />
-              <span className="text-[#ed4a1c]">TO TAKE NOTES.</span>
+            <h2 className="text-4xl sm:text-6xl font-archivo font-black text-[#141414] tracking-tight leading-[0.95] uppercase">
+              COMING TO SMRITI.<br />
+              <span className="text-[#0F4C81]">MORE THAN A PLACE TO TAKE NOTES.</span>
             </h2>
 
-            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-2xl">
+            <p className="mt-4 text-base sm:text-lg text-[#666055] leading-relaxed max-w-2xl font-normal">
               Connected sticky notes. Ready-made planners. Freehand sketching. AI assistance. Your notes, wherever you need them.
             </p>
           </div>
@@ -120,88 +117,71 @@ export const RoadmapSection: React.FC<RoadmapSectionProps> = ({ onOpenWaitlist }
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={onOpenWaitlist}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#111622] hover:bg-[#1a2233] border border-[#222] text-white font-mono text-xs uppercase tracking-wider transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#141414] hover:bg-[#0F4C81] text-white font-archivo font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all hover:scale-105"
             >
-              <span>Join Alpha Circle</span>
+              <span>Join Alpha Testing</span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* 4 Cards Grid in DOVV Studio Card Style */}
+        {/* 4 Feature Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {roadmapItems.map((item) => {
             const Icon = item.icon;
-            const userVoted = hasVoted[item.id];
+            const voted = hasVoted[item.id];
             return (
-              <ThreeDCard key={item.id} maxTilt={8} scale={1.01}>
-                <div className="dovv-card p-0 rounded-[32px] overflow-hidden flex flex-col justify-between h-full">
-                  {/* Top Image Frame */}
-                  <div className="relative aspect-[16/9] overflow-hidden bg-black dovv-media rounded-t-[32px] rounded-b-none">
-                    <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
-                      <span className="dovv-chip text-[#c6f432] font-mono text-xs py-1">
-                        {item.num} // COMING SOON
+              <ThreeDCard key={item.id} maxTilt={4}>
+                <div className="dovv-card bg-white p-6 sm:p-8 rounded-3xl border border-black/[0.08] shadow-md h-full flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-mono text-xs font-bold text-[#666055]">
+                        {item.num} // ROADMAP
                       </span>
-                      <span className="dovv-chip text-white font-mono text-xs py-1">
+                      <span className={`px-2.5 py-1 rounded-full text-[11px] font-mono border font-semibold ${item.badgeColor}`}>
                         {item.stage}
                       </span>
                     </div>
 
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d121c] via-transparent to-black/30 pointer-events-none" />
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-black/[0.06] flex items-center justify-center text-[#141414]">
+                        <Icon className="w-5 h-5 text-[#0F4C81]" />
+                      </div>
+                      <h3 className="font-archivo text-2xl font-bold uppercase text-[#141414]">
+                        {item.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-sm font-sans text-[#666055] leading-relaxed mb-6">
+                      {item.subtitle}
+                    </p>
+
+                    <ul className="space-y-2 mb-8">
+                      {item.bullets.map((b, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-xs font-mono text-[#141414]">
+                          <span className="text-[#0F4C81] font-bold">✦</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  {/* Card Body */}
-                  <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 rounded-xl bg-[#1c1c1c] border border-[#2b2b2b] flex items-center justify-center text-[#ed4a1c]">
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <h3 className="font-archivo text-2xl font-black text-white uppercase tracking-tight">
-                          {item.title}
-                        </h3>
-                      </div>
+                  {/* Vote Button */}
+                  <div className="pt-4 border-t border-black/[0.06] flex items-center justify-between">
+                    <button
+                      onClick={() => handleVote(item.id)}
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono transition-all ${
+                        voted
+                          ? 'bg-[#16c847]/15 text-[#16c847] border border-[#16c847]/30 font-bold'
+                          : 'bg-[#FAF7F2] hover:bg-[#F0EAE1] text-[#141414] border border-black/[0.08]'
+                      }`}
+                    >
+                      <Vote className="w-3.5 h-3.5 text-[#0F4C81]" />
+                      <span>{voted ? 'Upvoted!' : 'Upvote priority'}</span>
+                      <span className="text-black/40">({votes[item.id]})</span>
+                    </button>
 
-                      <p className="text-sm text-slate-300 font-sans leading-relaxed mb-6">
-                        {item.subtitle}
-                      </p>
-
-                      <div className="space-y-2 mb-6 font-mono text-xs text-slate-400">
-                        {item.bullets.map((bullet, idx) => (
-                          <div key={idx} className="flex items-center gap-2.5">
-                            <span className="text-[#ed4a1c] font-black">✦</span>
-                            <span>{bullet}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Voting Action */}
-                    <div className="pt-4 border-t border-[#1c1c1c] flex items-center justify-between">
-                      <button
-                        onClick={() => handleVote(item.id)}
-                        className={`dovv-chip text-xs font-mono font-bold flex items-center gap-1.5 transition-all ${
-                          userVoted ? 'bg-[#c6f432] text-black border-transparent' : 'hover:border-white'
-                        }`}
-                      >
-                        <Vote className="w-3.5 h-3.5" />
-                        <span>{userVoted ? 'Voted!' : 'Upvote Feature'}</span>
-                        <span className="opacity-75">({votes[item.id]})</span>
-                      </button>
-
-                      <button
-                        onClick={onOpenWaitlist}
-                        className="text-xs font-mono text-slate-400 hover:text-white flex items-center gap-1"
-                      >
-                        <span>Get Updates</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
+                    <span className="text-[11px] font-mono text-[#666055]">Coming Soon</span>
                   </div>
                 </div>
               </ThreeDCard>

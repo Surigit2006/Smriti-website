@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Menu, X, ArrowUpRight } from 'lucide-react';
-import { APP_REDIRECT_URL, CREATOR_NAME } from '../data/palettes';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { APP_REDIRECT_URL } from '../data/palettes';
 
 interface NavbarProps {
   onOpenWaitlist: () => void;
   activePaletteName?: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenWaitlist, activePaletteName }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -20,10 +20,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWaitlist, activePaletteNam
   }, []);
 
   const navLinks = [
-    { label: '162 Palettes', href: '#palettes' },
-    { label: 'Note Editor', href: '#editor' },
+    { label: 'Editor', href: '#editor' },
     { label: 'Organization', href: '#organization' },
-    { label: 'Connected Notes', href: '#connected-notes' },
+    { label: 'Palettes', href: '#palettes' },
+    { label: 'Canvas', href: '#connected-notes' },
     { label: 'Roadmap', href: '#roadmap' },
   ];
 
@@ -31,43 +31,38 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWaitlist, activePaletteNam
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#05080c]/90 backdrop-blur-xl border-b border-[#222222] py-3 shadow-2xl'
+          ? 'bg-[#FAF7F2]/90 backdrop-blur-md border-b border-black/[0.06] py-3.5 shadow-sm'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo with Artwork Icon & DOVV Studio bold type */}
+          {/* Logo with Artwork Emblem */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className="relative w-11 h-11 rounded-2xl overflow-hidden p-[1.5px] bg-gradient-to-tr from-[#ed4a1c] via-[#facc15] to-[#c6f432] shadow-lg shadow-[#ed4a1c]/20 group-hover:scale-105 transition-transform duration-300">
+            <div className="relative w-10 h-10 rounded-2xl overflow-hidden border border-black/10 shadow-sm group-hover:scale-105 group-hover:shadow-md transition-all duration-300">
               <img
                 src="/images/smriti-icon.jpg"
-                alt="Smriti Logo Icon"
-                className="w-full h-full object-cover object-top rounded-[14px]"
+                alt="Smriti Notes Logo"
+                className="w-full h-full object-cover object-top"
               />
             </div>
-            <div className="flex flex-col text-left">
-              <div className="flex items-center gap-2">
-                <span className="font-anton tracking-wide text-2xl text-white group-hover:text-[#ed4a1c] transition-colors leading-none">
-                  SMRITI
-                </span>
-                <span className="text-[10px] font-mono uppercase tracking-widest px-1.5 py-0.5 rounded bg-[#1c1c1c] text-[#c6f432] border border-[#333] font-bold">
-                  2.0
-                </span>
-              </div>
-              <span className="text-[11px] font-mono text-slate-400 mt-0.5">
-                by {CREATOR_NAME}
+            <div className="flex items-center gap-2">
+              <span className="font-anton tracking-tight text-2xl text-[#141414] group-hover:text-[#0F4C81] transition-colors leading-none">
+                SMRITI
+              </span>
+              <span className="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full bg-black/5 text-[#141414]/70 border border-black/5 font-semibold">
+                app
               </span>
             </div>
           </a>
 
           {/* Desktop Nav in DOVV floating pill style */}
-          <nav className="hidden lg:flex items-center gap-1 bg-[#0e121a]/85 border border-[#222222] rounded-full px-5 py-1.5 backdrop-blur-md shadow-inner">
+          <nav className="hidden md:flex items-center gap-1 bg-white/80 border border-black/[0.08] rounded-full px-5 py-1.5 backdrop-blur-md shadow-sm">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-200"
+                className="px-3.5 py-1 text-xs font-medium uppercase tracking-wider text-[#666055] hover:text-[#141414] hover:bg-black/[0.04] rounded-full transition-all duration-200"
               >
                 {link.label}
               </a>
@@ -80,67 +75,61 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWaitlist, activePaletteNam
               href={APP_REDIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider text-black bg-[#ed4a1c] hover:bg-[#ff5d33] text-white shadow-lg shadow-[#ed4a1c]/30 hover:shadow-[#ed4a1c]/50 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105"
+              className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-[#141414] hover:bg-[#0F4C81] shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
             >
-              <span className="w-2 h-2 rounded-full bg-[#c6f432] animate-ping" />
-              <span>Launch App</span>
-              <span className="text-[10px] font-mono lowercase bg-black/20 px-1.5 py-0.5 rounded text-white/90">
-                app.smritinotes.site
-              </span>
+              <span className="w-2 h-2 rounded-full bg-[#16c847] animate-pulse" />
+              <span>Open App</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-2">
             <a
               href={APP_REDIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs px-3 py-1.5 rounded-full bg-[#ed4a1c] text-white font-bold"
+              className="text-xs px-3.5 py-1.5 rounded-full bg-[#141414] text-white font-medium"
             >
-              App
+              Open App
             </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-[#1c1c1c] border border-[#2b2b2b] text-slate-300 hover:text-white"
+              className="p-2 rounded-xl text-[#141414] hover:bg-black/5"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0a0e16]/98 border-b border-[#222222] backdrop-blur-2xl px-5 pt-3 pb-6 space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-[#222222] text-xs text-slate-400 font-mono">
-            <span>Created by {CREATOR_NAME}</span>
-            <span className="text-[#c6f432]">● Ready</span>
+        {/* Mobile Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-3 p-4 bg-white/95 backdrop-blur-xl border border-black/[0.08] rounded-2xl shadow-xl flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-2.5 text-sm font-medium text-[#141414] hover:bg-black/5 rounded-xl transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="pt-2 border-t border-black/5">
+              <a
+                href={APP_REDIRECT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-[#141414]"
+              >
+                <span>Launch app.smritinotes.site</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+            </div>
           </div>
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-xl text-sm font-bold uppercase tracking-wider text-slate-200 hover:bg-white/5 hover:text-white"
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="pt-3 border-t border-[#222222]">
-            <a
-              href={APP_REDIRECT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-full font-bold uppercase text-white bg-[#ed4a1c] shadow-lg shadow-[#ed4a1c]/30 text-xs"
-            >
-              Launch app.smritinotes.site →
-            </a>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 };

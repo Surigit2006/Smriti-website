@@ -7,29 +7,30 @@ import {
   Trash2, 
   Folder, 
   FileText, 
-  Download, 
-  Upload, 
-  ArrowRight
+  ArrowRight,
+  Sparkles,
+  Command,
+  X
 } from 'lucide-react';
-import { ColorPalette, APP_REDIRECT_URL, CREATOR_NAME } from '../data/palettes';
+import { AppPalette, APP_REDIRECT_URL } from '../data/palettes';
 import { ThreeDCard } from './ThreeDCard';
 
 interface OrganizationShowcaseProps {
-  activePalette: ColorPalette;
+  activePalette: AppPalette;
 }
 
-export const OrganizationShowcase: React.FC<OrganizationShowcaseProps> = ({ activePalette }) => {
+export const OrganizationShowcase: React.FC<OrganizationShowcaseProps> = () => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'pinned' | 'archive' | 'trash' | 'folder-arch'>('all');
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const allNotes = [
-    { id: 1, title: 'Smriti 2.0 Architectural Whitepaper', folder: 'Architecture', pinned: true, archived: false, trash: false, words: 1240, date: 'Oct 27' },
-    { id: 2, title: 'Weekly Sprint & Goal Tracker', folder: 'Personal', pinned: true, archived: false, trash: false, words: 410, date: 'Oct 26' },
-    { id: 3, title: '162 Color Palette Contrast Matrix', folder: 'Design', pinned: false, archived: false, trash: false, words: 890, date: 'Oct 25' },
-    { id: 4, title: 'Deep Work Habits & Dopamine Detox', folder: 'Personal', pinned: false, archived: false, trash: false, words: 1620, date: 'Oct 21' },
+    { id: 1, title: 'Smriti Architecture & Spatial Spec', folder: 'Architecture', pinned: true, archived: false, trash: false, words: 1240, date: 'Oct 28' },
+    { id: 2, title: 'Weekly Sprint & Goal Tracker', folder: 'Personal', pinned: true, archived: false, trash: false, words: 410, date: 'Oct 27' },
+    { id: 3, title: '162 Color Palette Contrast Matrix', folder: 'Design', pinned: false, archived: false, trash: false, words: 890, date: 'Oct 26' },
+    { id: 4, title: 'Deep Work Habits & Dopamine Detox', folder: 'Essays', pinned: false, archived: false, trash: false, words: 1620, date: 'Oct 22' },
     { id: 5, title: 'Q3 Retrospective & Learned Lessons', folder: 'Work', pinned: false, archived: true, trash: false, words: 950, date: 'Sep 30' },
-    { id: 6, title: 'Drafting Old Tab Concepts (Deprecated)', folder: 'Archive', pinned: false, archived: true, trash: false, words: 340, date: 'Sep 12' },
+    { id: 6, title: 'Old Tab Hierarchy Draft (Deprecated)', folder: 'Archive', pinned: false, archived: true, trash: false, words: 340, date: 'Sep 12' },
     { id: 7, title: 'Scrap Grocery & Quick Brain Dump', folder: 'Personal', pinned: false, archived: false, trash: true, words: 80, date: 'Aug 19' },
   ];
 
@@ -47,243 +48,233 @@ export const OrganizationShowcase: React.FC<OrganizationShowcaseProps> = ({ acti
   );
 
   return (
-    <section id="organization" className="py-24 sm:py-32 relative bg-[#05080c] border-t border-[#1c1c1c]">
+    <section id="organization" className="py-24 sm:py-32 relative bg-[#F5F0E8] border-t border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* DOVV Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-8 border-b border-[#1c1c1c]">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-8 border-b border-black/[0.07]">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-mono text-xs text-[#facc15] font-bold uppercase tracking-widest">
-                [ 03 // SPATIAL ORGANIZATION ]
+              <span className="font-mono text-xs text-[#F59E0B] font-bold uppercase tracking-widest">
+                [ 02 // SPATIAL ORGANIZATION ]
               </span>
-              <span className="dovv-chip text-[#c6f432] text-xs py-0.5">
+              <span className="dovv-chip text-[#141414] text-xs py-0.5">
                 Current Feature
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl font-archivo font-black text-white tracking-tight leading-[0.95] uppercase">
+            <h2 className="text-4xl sm:text-6xl font-archivo font-black text-[#141414] tracking-tight leading-[0.95] uppercase">
               ORDER WITHOUT OVERHEAD.<br />
-              <span className="text-[#facc15]">FOLDERS. SEARCH. PINS.</span>
+              <span className="text-[#D97706]">FOLDERS. SEARCH. PINS.</span>
             </h2>
 
-            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
+            <p className="mt-4 text-base sm:text-lg text-[#666055] leading-relaxed max-w-2xl font-normal">
               Keep notes organized with folders, search, pinned notes, Archive, and Trash. No convoluted database setups or slow sync pipelines — just fast, logical structure.
             </p>
           </div>
 
           <button
             onClick={() => setSearchModalOpen(true)}
-            className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-[#111622] hover:bg-[#1a2233] border border-[#222] text-white font-mono text-xs uppercase tracking-wider transition-all shadow-lg shrink-0 group"
+            className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-white hover:bg-[#FAF7F2] border border-black/[0.08] text-[#141414] font-mono text-xs uppercase tracking-wider transition-all shadow-sm hover:shadow shrink-0 group"
           >
-            <Search className="w-4 h-4 text-[#c6f432] group-hover:scale-110 transition-transform" />
+            <Search className="w-4 h-4 text-[#0F4C81] group-hover:scale-110 transition-transform" />
             <span>Try Command Bar (⌘K)</span>
           </button>
         </div>
 
-        {/* 4 Step Cards in DOVV Studio Style */}
+        {/* 4 Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <div 
             onClick={() => setActiveFilter(activeFilter === 'folder-arch' ? 'all' : 'folder-arch')}
-            className={`dovv-card p-6 cursor-pointer transition-all ${
-              activeFilter === 'folder-arch' ? 'ring-2 ring-[#c6f432]' : ''
+            className={`dovv-card p-6 cursor-pointer transition-all bg-white ${
+              activeFilter === 'folder-arch' ? 'ring-2 ring-[#0F4C81]' : ''
             }`}
           >
-            <div className="font-mono text-xs text-[#ed4a1c] font-bold mb-3">01 // FOLDERS</div>
-            <h4 className="font-archivo text-xl font-bold text-white uppercase mb-2">Projects</h4>
-            <p className="text-xs text-slate-400 font-mono leading-relaxed">
+            <div className="font-mono text-xs text-[#0F4C81] font-bold mb-3">01 // FOLDERS</div>
+            <h4 className="font-archivo text-xl font-bold text-[#141414] uppercase mb-2">Collections</h4>
+            <p className="text-xs text-[#666055] font-mono leading-relaxed">
               Group related notes cleanly by project, sprint, or study topic.
             </p>
           </div>
 
           <div 
             onClick={() => setSearchModalOpen(true)}
-            className="dovv-card p-6 cursor-pointer transition-all hover:border-[#c6f432]"
+            className="dovv-card p-6 cursor-pointer transition-all bg-white hover:border-[#0F4C81]"
           >
-            <div className="font-mono text-xs text-[#c6f432] font-bold mb-3">02 // SEARCH</div>
-            <h4 className="font-archivo text-xl font-bold text-white uppercase mb-2">Fuzzy ⌘K</h4>
-            <p className="text-xs text-slate-400 font-mono leading-relaxed">
-              Sub-millisecond fuzzy search across titles, tags, and full text.
+            <div className="font-mono text-xs text-[#F59E0B] font-bold mb-3">02 // SEARCH</div>
+            <h4 className="font-archivo text-xl font-bold text-[#141414] uppercase mb-2">Instant ⌘K</h4>
+            <p className="text-xs text-[#666055] font-mono leading-relaxed">
+              Sub-millisecond fuzzy search across titles, tags, and full body text.
             </p>
           </div>
 
           <div 
             onClick={() => setActiveFilter(activeFilter === 'pinned' ? 'all' : 'pinned')}
-            className={`dovv-card p-6 cursor-pointer transition-all ${
-              activeFilter === 'pinned' ? 'ring-2 ring-[#facc15]' : ''
+            className={`dovv-card p-6 cursor-pointer transition-all bg-white ${
+              activeFilter === 'pinned' ? 'ring-2 ring-[#F59E0B]' : ''
             }`}
           >
-            <div className="font-mono text-xs text-[#facc15] font-bold mb-3">03 // PINNED</div>
-            <h4 className="font-archivo text-xl font-bold text-white uppercase mb-2">Anchors</h4>
-            <p className="text-xs text-slate-400 font-mono leading-relaxed">
-              Lock key projects and daily anchors right at the top of your list.
+            <div className="font-mono text-xs text-[#E87A90] font-bold mb-3">03 // PRIORITIES</div>
+            <h4 className="font-archivo text-xl font-bold text-[#141414] uppercase mb-2">Pinned Notes</h4>
+            <p className="text-xs text-[#666055] font-mono leading-relaxed">
+              Pin high-priority items so they stay anchored at the top of your sidebar.
             </p>
           </div>
 
           <div 
             onClick={() => setActiveFilter(activeFilter === 'archive' ? 'all' : 'archive')}
-            className={`dovv-card p-6 cursor-pointer transition-all ${
-              activeFilter === 'archive' ? 'ring-2 ring-emerald-400' : ''
+            className={`dovv-card p-6 cursor-pointer transition-all bg-white ${
+              activeFilter === 'archive' ? 'ring-2 ring-[#141414]' : ''
             }`}
           >
-            <div className="font-mono text-xs text-emerald-400 font-bold mb-3">04 // ARCHIVE</div>
-            <h4 className="font-archivo text-xl font-bold text-white uppercase mb-2">Clean Desk</h4>
-            <p className="text-xs text-slate-400 font-mono leading-relaxed">
-              De-clutter your active desk while retaining searchable archives.
+            <div className="font-mono text-xs text-[#141414] font-bold mb-3">04 // HYGIENE</div>
+            <h4 className="font-archivo text-xl font-bold text-[#141414] uppercase mb-2">Archive & Trash</h4>
+            <p className="text-xs text-[#666055] font-mono leading-relaxed">
+              Safely store completed work out of sight, or restore deleted notes.
             </p>
           </div>
         </div>
 
-        {/* Live Filterable Notes Table Preview in DOVV Card Frame */}
-        <div className="dovv-card p-0 rounded-[32px] overflow-hidden">
-          <div className="p-4 sm:p-5 border-b border-[#222222] flex flex-wrap items-center justify-between gap-4 bg-[#0a0e16]">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs text-slate-400 font-bold uppercase">Viewing:</span>
-              <div className="flex flex-wrap gap-1.5">
-                {[
-                  { key: 'all', label: 'All Active' },
-                  { key: 'pinned', label: 'Pinned' },
-                  { key: 'folder-arch', label: 'Architecture' },
-                  { key: 'archive', label: 'Archive' },
-                  { key: 'trash', label: 'Trash' },
-                ].map((tab) => (
-                  <button
-                    key={tab.key}
-                    onClick={() => setActiveFilter(tab.key as any)}
-                    className={`dovv-chip text-xs font-mono uppercase ${
-                      activeFilter === tab.key
-                        ? 'bg-[#ed4a1c] text-white font-bold border-transparent'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-            </div>
+        {/* Interactive Workspace Organization Demo */}
+        <ThreeDCard maxTilt={3}>
+          <div className="dovv-card p-6 sm:p-8 bg-white border border-black/[0.08] shadow-md rounded-3xl">
+            {/* Filter Pills */}
+            <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-black/[0.06]">
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => setActiveFilter('all')}
+                  className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all ${
+                    activeFilter === 'all'
+                      ? 'bg-[#141414] text-white'
+                      : 'bg-[#FAF7F2] text-[#666055] hover:text-[#141414]'
+                  }`}
+                >
+                  All Notes ({allNotes.filter(n => !n.archived && !n.trash).length})
+                </button>
 
-            <div className="flex items-center gap-2 text-xs font-mono">
-              <span className="text-[#c6f432] font-bold">
-                100% Offline Ready
+                <button
+                  onClick={() => setActiveFilter('pinned')}
+                  className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold flex items-center gap-1.5 transition-all ${
+                    activeFilter === 'pinned'
+                      ? 'bg-[#F59E0B] text-black'
+                      : 'bg-[#FAF7F2] text-[#666055] hover:text-[#141414]'
+                  }`}
+                >
+                  <Pin className="w-3 h-3" />
+                  <span>Pinned ({allNotes.filter(n => n.pinned && !n.trash).length})</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveFilter('archive')}
+                  className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold flex items-center gap-1.5 transition-all ${
+                    activeFilter === 'archive'
+                      ? 'bg-[#141414] text-white'
+                      : 'bg-[#FAF7F2] text-[#666055] hover:text-[#141414]'
+                  }`}
+                >
+                  <Archive className="w-3 h-3" />
+                  <span>Archive ({allNotes.filter(n => n.archived).length})</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveFilter('trash')}
+                  className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold flex items-center gap-1.5 transition-all ${
+                    activeFilter === 'trash'
+                      ? 'bg-[#E87A90] text-white'
+                      : 'bg-[#FAF7F2] text-[#666055] hover:text-[#141414]'
+                  }`}
+                >
+                  <Trash2 className="w-3 h-3" />
+                  <span>Trash ({allNotes.filter(n => n.trash).length})</span>
+                </button>
+              </div>
+
+              <span className="text-xs font-mono text-[#666055]">
+                {displayedNotes.length} notes in current view
               </span>
             </div>
-          </div>
 
-          <div className="divide-y divide-[#1c1c1c]">
-            {displayedNotes.map((note) => (
-              <div
-                key={note.id}
-                className="p-4 sm:px-6 flex items-center justify-between gap-4 hover:bg-white/[0.02] transition-colors"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="min-w-0">
-                    <h5 className="font-archivo text-base font-bold text-white uppercase truncate">
-                      {note.title}
-                    </h5>
-                    <div className="flex items-center gap-2 text-xs text-slate-400 font-mono mt-0.5">
-                      <span className="text-[#facc15]">📁 {note.folder}</span>
-                      <span>•</span>
-                      <span>{note.words} words</span>
-                      <span>•</span>
-                      <span>{note.date}</span>
+            {/* Note List Items */}
+            <div className="space-y-2.5">
+              {displayedNotes.map((note) => (
+                <div
+                  key={note.id}
+                  className="flex items-center justify-between p-4 rounded-2xl bg-[#FAF7F2] hover:bg-[#F0EAE1] border border-black/[0.04] transition-all group"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-white border border-black/[0.06] flex items-center justify-center text-[#141414]">
+                      <FileText className="w-4 h-4 text-[#0F4C81]" />
                     </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 shrink-0">
-                  {note.pinned && (
-                    <span className="dovv-chip text-[#facc15] font-mono text-[11px] py-0.5">
-                      Pinned
-                    </span>
-                  )}
-                  {note.archived && (
-                    <span className="dovv-chip text-emerald-400 font-mono text-[11px] py-0.5">
-                      Archived
-                    </span>
-                  )}
-                  {note.trash && (
-                    <span className="dovv-chip text-rose-400 font-mono text-[11px] py-0.5">
-                      Trash
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="p-4 bg-[#0a0e16] border-t border-[#1c1c1c] text-xs font-mono text-slate-400 flex items-center justify-between">
-            <span>Showing {displayedNotes.length} notes</span>
-            <a 
-              href={APP_REDIRECT_URL} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-[#c6f432] font-bold hover:underline"
-            >
-              Organize on app.smritinotes.site →
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Interactive Search Modal Dialog Simulator */}
-      {searchModalOpen && (
-        <div 
-          className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/85 backdrop-blur-md"
-          onClick={() => setSearchModalOpen(false)}
-        >
-          <div 
-            className="w-full max-w-xl dovv-card p-0 rounded-[32px] overflow-hidden border border-[#333]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-4 border-b border-[#222] flex items-center gap-3 bg-[#0a0e16]">
-              <Search className="w-5 h-5 text-[#c6f432]" />
-              <input
-                type="text"
-                autoFocus
-                placeholder="Search notes, folders, tags..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent text-white text-sm font-mono focus:outline-none placeholder-slate-500"
-              />
-              <button 
-                onClick={() => setSearchModalOpen(false)}
-                className="text-xs text-slate-400 hover:text-white px-2 py-1 rounded bg-[#1c1c1c] font-mono"
-              >
-                ESC
-              </button>
-            </div>
-
-            <div className="p-2 max-h-80 overflow-y-auto divide-y divide-[#1c1c1c]">
-              {searchResults.length > 0 ? (
-                searchResults.map((item) => (
-                  <div 
-                    key={item.id}
-                    onClick={() => {
-                      alert(`Opening note: "${item.title}"`);
-                      setSearchModalOpen(false);
-                    }}
-                    className="p-3.5 hover:bg-white/5 rounded-2xl cursor-pointer flex items-center justify-between transition-colors"
-                  >
                     <div>
-                      <div className="text-sm font-bold font-archivo uppercase text-white">{item.title}</div>
-                      <div className="text-xs text-slate-400 font-mono mt-0.5">📁 {item.folder} • {item.words} words</div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-semibold text-[#141414] group-hover:text-[#0F4C81] transition-colors">
+                          {note.title}
+                        </span>
+                        {note.pinned && (
+                          <span className="px-2 py-0.5 rounded-md bg-[#F59E0B]/15 text-[#D97706] text-[10px] font-mono font-bold">
+                            Pinned
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3 text-xs font-mono text-[#666055] mt-0.5">
+                        <span className="text-[#0F4C81]">{note.folder}</span>
+                        <span>•</span>
+                        <span>{note.words} words</span>
+                      </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-slate-500" />
                   </div>
-                ))
-              ) : (
-                <div className="p-8 text-center text-xs text-slate-400 font-mono">
-                  No notes matching "{searchQuery}"
-                </div>
-              )}
-            </div>
 
-            <div className="p-3 bg-[#0a0e16] border-t border-[#222] flex items-center justify-between text-[11px] font-mono text-slate-400">
-              <span>Navigate with ↑ ↓ • Press Enter to select</span>
-              <span className="text-[#ed4a1c] font-bold">Smriti Sub-ms Search</span>
+                  <div className="text-xs font-mono text-[#666055]">
+                    {note.date}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      )}
+        </ThreeDCard>
+
+        {/* ⌘K Search Modal Simulation */}
+        {searchModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
+            <div className="w-full max-w-xl bg-white rounded-3xl p-6 shadow-2xl border border-black/10">
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-black/[0.06]">
+                <div className="flex items-center gap-2.5 w-full">
+                  <Search className="w-5 h-5 text-[#0F4C81]" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search notes, folders, and tags..."
+                    className="w-full text-base font-sans focus:outline-none text-[#141414] bg-transparent"
+                    autoFocus
+                  />
+                </div>
+                <button
+                  onClick={() => setSearchModalOpen(false)}
+                  className="p-1.5 rounded-lg text-black/40 hover:text-black hover:bg-black/5"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="space-y-1.5 max-h-60 overflow-y-auto">
+                {searchResults.map((n) => (
+                  <div
+                    key={n.id}
+                    className="p-3 rounded-xl hover:bg-[#FAF7F2] flex items-center justify-between cursor-pointer text-xs font-mono"
+                  >
+                    <span className="font-semibold text-[#141414]">{n.title}</span>
+                    <span className="text-[#0F4C81]">{n.folder}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-4 mt-4 border-t border-black/[0.06] text-right">
+                <span className="text-[11px] font-mono text-[#666055]">Press ESC or click close</span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

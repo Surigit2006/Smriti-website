@@ -6,7 +6,7 @@ interface CurvedDomeProps {
 }
 
 export const CurvedDome: React.FC<CurvedDomeProps> = ({ 
-  fill = '#05080c',
+  fill = '#F5F0E8',
   className = '' 
 }) => {
   return (
@@ -15,7 +15,7 @@ export const CurvedDome: React.FC<CurvedDomeProps> = ({
         viewBox="0 0 1440 96"
         fill="none"
         preserveAspectRatio="none"
-        className="w-full h-12 sm:h-20"
+        className="w-full h-10 sm:h-16"
       >
         <path
           d="M0 96C360 16 1080 16 1440 96V96H0V96Z"

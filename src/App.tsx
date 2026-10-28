@@ -3,9 +3,9 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { MarqueeTicker } from './components/MarqueeTicker';
 import { CurvedDome } from './components/CurvedDome';
-import { PaletteShowcase } from './components/PaletteShowcase';
 import { EditorShowcase } from './components/EditorShowcase';
 import { OrganizationShowcase } from './components/OrganizationShowcase';
+import { PaletteShowcase } from './components/PaletteShowcase';
 import { ConnectedStickyNotesShowcase } from './components/ConnectedStickyNotesShowcase';
 import { RoadmapSection } from './components/RoadmapSection';
 import { WhySmriti } from './components/WhySmriti';
@@ -13,21 +13,20 @@ import { FAQAndCTA } from './components/FAQAndCTA';
 import { Footer } from './components/Footer';
 import { WaitlistModal } from './components/WaitlistModal';
 import { ThreeDBackground } from './components/ThreeDBackground';
-import { FEATURED_PALETTES, ColorPalette, APP_REDIRECT_URL, CREATOR_NAME } from './data/palettes';
-import { ArrowUpRight } from 'lucide-react';
+import { DEFAULT_THEME, AppPalette } from './data/palettes';
 
 export function App() {
-  const [activePalette, setActivePalette] = useState<ColorPalette>(FEATURED_PALETTES[0]);
+  const [activePalette, setActivePalette] = useState<AppPalette>(DEFAULT_THEME);
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
 
-  const handleSelectPalette = (palette: ColorPalette) => {
+  const handleSelectPalette = (palette: AppPalette) => {
     setActivePalette(palette);
   };
 
   return (
-    <div className="min-h-screen bg-[#05080c] text-[#f5f5f5] flex flex-col font-sans selection:bg-[#ed4a1c] selection:text-white relative">
-      {/* 3D Atmospheric Particle Constellation Canvas */}
-      <ThreeDBackground accentColor={activePalette.accent} />
+    <div className="min-h-screen bg-[#F5F0E8] text-[#141414] flex flex-col font-sans selection:bg-[#0F4C81] selection:text-white relative antialiased">
+      {/* 3D Atmospheric Background Canvas */}
+      <ThreeDBackground accentColor={activePalette.accent || '#F59E0B'} />
 
       {/* Top sticky navigation */}
       <Navbar 
@@ -37,33 +36,33 @@ export function App() {
 
       {/* Main Page Content */}
       <main className="flex-1 relative z-10">
-        {/* 1. DOVV Studio Inspired Hero Section */}
+        {/* 1. Minimal DOVV Style Hero Section */}
         <Hero 
           onOpenWaitlist={() => setIsWaitlistOpen(true)}
           activePalette={activePalette}
           onSelectPalette={handleSelectPalette}
         />
 
-        {/* 2. DOVV Studio Dual Infinite Marquee Ticker */}
+        {/* 2. Paper Ticker */}
         <MarqueeTicker />
 
-        {/* 3. Curved Dome Section Divider */}
-        <CurvedDome fill="#05080c" />
+        {/* 3. Section Curve Divider */}
+        <CurvedDome fill="#FAF7F2" />
 
-        {/* 4. 162 Color Palettes & Official App Colorways (Work Cards Style) */}
-        <PaletteShowcase 
-          activePalette={activePalette}
-          onSelectPalette={handleSelectPalette}
-        />
-
-        {/* 5. A First-Class Note Editor (Product Benefit) */}
+        {/* 4. A First-Class Note Editor (Product Benefit) */}
         <EditorShowcase 
           activePalette={activePalette}
         />
 
-        {/* 6. Effortless Organization (Spatial Flow) */}
+        {/* 5. Effortless Organization (Spatial Hierarchy, No Tabs) */}
         <OrganizationShowcase 
           activePalette={activePalette}
+        />
+
+        {/* 6. 162 Color Palettes (Balanced Feature Card) */}
+        <PaletteShowcase 
+          activePalette={activePalette}
+          onSelectPalette={handleSelectPalette}
         />
 
         {/* 7. Signature Upcoming Feature: Connected Sticky Notes */}
@@ -77,63 +76,30 @@ export function App() {
           onOpenWaitlist={() => setIsWaitlistOpen(true)}
         />
 
-        {/* 9. Why Smriti / Architecture evolution (No-tabs) */}
+        {/* 9. Why Smriti: Architectural evolution (Zero Tabs) */}
         <WhySmriti 
           activePalette={activePalette}
         />
 
-        {/* 10. FAQ & Final Monumental Call to Action */}
+        {/* 10. FAQ & Final Call to Action */}
         <FAQAndCTA 
           onOpenWaitlist={() => setIsWaitlistOpen(true)}
           activePalette={activePalette}
         />
       </main>
 
-      {/* Footer */}
+      {/* 11. Minimal Footer with Author Attribution placed ONCE at the end */}
       <Footer 
         activePalette={activePalette}
         onOpenWaitlist={() => setIsWaitlistOpen(true)}
       />
 
-      {/* Early Access Modal */}
+      {/* Early Access Priority Modal */}
       <WaitlistModal 
         isOpen={isWaitlistOpen}
         onClose={() => setIsWaitlistOpen(false)}
         activePaletteAccent={activePalette.accent}
       />
-
-      {/* Floating Bottom Quick Launch Pill */}
-      <aside aria-label="Quick launch bar" className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 max-w-[92vw] sm:max-w-md">
-        <div className="p-2 pl-3.5 rounded-full bg-[#080c14]/95 border border-[#262c3b] shadow-2xl shadow-black/90 backdrop-blur-2xl flex items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-8 h-8 rounded-full overflow-hidden border border-[#ed4a1c] shrink-0">
-              <img
-                src="/images/smriti-icon.jpg"
-                alt="Smriti"
-                className="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div className="truncate">
-              <span className="font-archivo text-white text-xs block truncate uppercase font-bold tracking-tight">
-                app.smritinotes.site
-              </span>
-              <span className="text-[10px] text-[#c6f432] font-mono block truncate font-bold">
-                by {CREATOR_NAME}
-              </span>
-            </div>
-          </div>
-
-          <a
-            href={APP_REDIRECT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 rounded-full font-archivo font-black text-xs uppercase tracking-wider text-white bg-[#ed4a1c] hover:bg-[#ff5d33] shadow-lg shadow-[#ed4a1c]/30 flex items-center gap-1.5 shrink-0 transition-transform hover:scale-105"
-          >
-            <span>Launch</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-        </div>
-      </aside>
     </div>
   );
 }
