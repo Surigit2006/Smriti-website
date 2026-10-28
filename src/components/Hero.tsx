@@ -9,20 +9,21 @@ import {
   PenTool,
   Check,
   Sparkles,
-  ExternalLink
+  ExternalLink,
+  ZoomIn,
+  Eye,
+  Sliders
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { AppPalette, APP_REDIRECT_URL } from '../data/palettes';
 import { ThreeDCard } from './ThreeDCard';
 
 interface HeroProps {
-  onOpenWaitlist: () => void;
   activePalette: AppPalette;
   onSelectPalette: (palette: AppPalette) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ 
-  activePalette 
-}) => {
+export const Hero: React.FC<HeroProps> = () => {
   const [viewMode, setViewMode] = useState<'interactive' | 'screenshot'>('interactive');
   const [editorText, setEditorText] = useState(
     `# Deep Thinking in the Age of Noise\n\nThe highest leverage work happens when friction drops to absolute zero.\n\n### Why Smriti Removed Tabs\n1. Cognitive Overhead — 40 open tabs create visual fatigue.\n2. Context Loss — Thoughts aren't throwaway browser sessions.\n3. Spatial Focus — Folders, pinned notes, and upcoming canvas stickies.\n\n> "Simplicity is prerequisite for reliability and depth."`
@@ -40,7 +41,12 @@ export const Hero: React.FC<HeroProps> = ({
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* DOVV Studio Status Pill */}
-        <div className="flex justify-center mb-8">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="flex justify-center mb-8"
+        >
           <a
             href={APP_REDIRECT_URL}
             target="_blank"
@@ -53,12 +59,15 @@ export const Hero: React.FC<HeroProps> = ({
             <span className="text-[#666055] font-mono text-xs">app.smritinotes.site</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </a>
-        </div>
+        </motion.div>
 
         {/* GIANT DOVV Condensed Headline Wordmark with Minimal 3D Floating Die-Cut Stickers */}
         <div className="relative max-w-5xl mx-auto mb-8 select-none">
           {/* Floating Sticker 1: Artwork Woman with Peacock Emblem */}
-          <div 
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
+            animate={{ opacity: 1, scale: 1, rotate: -7 }}
+            transition={{ duration: 0.6, delay: 0.1, type: 'spring' }}
             className="dovv-sticker absolute -top-10 -left-2 sm:-left-8 hidden md:block" 
             style={{ '--rot': '-7deg' } as React.CSSProperties}
           >
@@ -71,10 +80,13 @@ export const Hero: React.FC<HeroProps> = ({
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Floating Sticker 2: Minimal "NO BROWSER TABS" Badge */}
-          <div 
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, rotate: 15 }}
+            animate={{ opacity: 1, scale: 1, rotate: 8 }}
+            transition={{ duration: 0.6, delay: 0.2, type: 'spring' }}
             className="dovv-sticker absolute -top-6 -right-2 sm:-right-6 hidden md:block" 
             style={{ '--rot': '8deg' } as React.CSSProperties}
           >
@@ -82,30 +94,51 @@ export const Hero: React.FC<HeroProps> = ({
               <Flame className="w-3.5 h-3.5 text-[#F59E0B]" />
               <span>NO BROWSER TABS</span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Giant Wordmark in Anton / Archivo */}
-          <h1 className="dovv-wordmark text-[14vw] sm:text-[11vw] lg:text-[7.8rem] tracking-tight text-[#141414] font-black leading-[0.88] uppercase">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="dovv-wordmark text-[14vw] sm:text-[11vw] lg:text-[7.8rem] tracking-tight text-[#141414] font-black leading-[0.88] uppercase"
+          >
             YOUR THOUGHTS<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#141414] via-[#0F4C81] to-[#D97706]">
               DESERVE A BETTER
             </span><br />
             SPACE.
-          </h1>
+          </motion.h1>
         </div>
 
         {/* Subtitle in clean minimalist typography */}
-        <p className="max-w-2xl mx-auto text-base sm:text-lg text-[#666055] font-normal leading-relaxed mb-8">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="max-w-2xl mx-auto text-base sm:text-lg text-[#666055] font-normal leading-relaxed mb-8"
+        >
           A calm, distraction-free notebook for writing, planning, sketching, and connecting ideas — designed around the way you think without tab clutter.
-        </p>
+        </motion.p>
 
         {/* Balanced Feature Chips */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-wrap items-center justify-center gap-2 mb-10"
+        >
           <a href="#editor" className="dovv-chip">
             ✍️ First-Class Editor
           </a>
+          <a href="#templates" className="dovv-chip">
+            📋 Note Templates
+          </a>
+          <a href="#autocomplete" className="dovv-chip">
+            ⚡ Inline Autocomplete
+          </a>
           <a href="#organization" className="dovv-chip">
-            🗂️ Effortless Organization
+            🗂️ Zero Tab Clutter
           </a>
           <a href="#palettes" className="dovv-chip">
             🎨 162 Palettes
@@ -113,13 +146,15 @@ export const Hero: React.FC<HeroProps> = ({
           <a href="#connected-notes" className="dovv-chip">
             📌 Connected Stickies
           </a>
-          <span className="dovv-chip text-[#0F4C81] font-semibold">
-            ⚡ Instant Local-First Speed
-          </span>
-        </div>
+        </motion.div>
 
         {/* Primary Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-16"
+        >
           <a
             href={APP_REDIRECT_URL}
             target="_blank"
@@ -134,12 +169,12 @@ export const Hero: React.FC<HeroProps> = ({
           </a>
 
           <a
-            href="#editor"
+            href="#templates"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#141414] bg-white hover:bg-[#FAF7F2] border border-black/[0.08] shadow-sm transition-colors"
           >
-            <span>Explore Experience</span>
+            <span>Explore Templates Demo</span>
           </a>
-        </div>
+        </motion.div>
 
         {/* 3D App Workspace Window in Minimal DOVV Framing */}
         <div className="max-w-5xl mx-auto">
@@ -147,7 +182,7 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="mb-3 flex items-center justify-between px-2">
             <div className="flex items-center gap-2 text-xs font-mono text-[#666055]">
               <span className="w-2 h-2 rounded-full bg-[#16c847]" />
-              <span>Workspace Preview</span>
+              <span>Workspace Showcase</span>
             </div>
 
             <div className="flex items-center bg-white p-1 rounded-full border border-black/[0.08] shadow-sm">
@@ -169,12 +204,12 @@ export const Hero: React.FC<HeroProps> = ({
                     : 'text-[#666055] hover:text-[#141414]'
                 }`}
               >
-                Production Screenshot
+                Original App Screenshot
               </button>
             </div>
           </div>
 
-          <ThreeDCard maxTilt={5} className="w-full">
+          <ThreeDCard maxTilt={4} className="w-full">
             <div className="dovv-card text-left p-0 border border-black/[0.08] rounded-3xl overflow-hidden shadow-xl bg-white">
               {/* Window Header */}
               <div className="px-5 py-3.5 bg-[#FAF7F2] border-b border-black/[0.06] flex items-center justify-between text-xs">
@@ -321,22 +356,34 @@ export const Hero: React.FC<HeroProps> = ({
                   </div>
                 </div>
               ) : (
-                /* Production screenshot view */
-                <div className="p-4 sm:p-6 bg-[#FAF7F2]">
-                  <div className="relative rounded-2xl overflow-hidden border border-black/10 shadow-lg group">
+                /* Production screenshot view with feature callouts */
+                <div className="p-4 sm:p-8 bg-[#FAF7F2]">
+                  <div className="relative rounded-2xl overflow-hidden border border-black/10 shadow-xl group">
                     <img
                       src="/images/smriti-app-screenshot.png"
                       alt="Smriti Notes Production Workspace Screenshot"
                       className="w-full h-auto object-cover"
                     />
+
+                    {/* Interactive Hotspot Pills highlighting exact features from the user's app */}
+                    <div className="absolute top-4 left-4 z-20 flex flex-wrap gap-2">
+                      <span className="px-3 py-1 rounded-full bg-black/80 text-white backdrop-blur-md text-[11px] font-mono flex items-center gap-1.5 shadow-lg">
+                        <span className="w-2 h-2 rounded-full bg-[#16c847]" />
+                        <span>Original App UI: Theme Switcher Modal</span>
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-white/90 text-[#141414] backdrop-blur-md text-[11px] font-mono font-bold shadow-lg border border-black/10">
+                        162 Palette Engine
+                      </span>
+                    </div>
+
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-xs">
                       <a
                         href={APP_REDIRECT_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-3 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider shadow-xl flex items-center gap-2 hover:scale-105 transition-transform"
+                        className="px-6 py-3 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider shadow-2xl flex items-center gap-2 hover:scale-105 transition-transform"
                       >
-                        <span>Open Live in app.smritinotes.site</span>
+                        <span>Open Live at app.smritinotes.site</span>
                         <ExternalLink className="w-4 h-4" />
                       </a>
                     </div>

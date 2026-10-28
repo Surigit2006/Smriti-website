@@ -4,11 +4,10 @@ import { AppPalette, APP_REDIRECT_URL } from '../data/palettes';
 import { ThreeDCard } from './ThreeDCard';
 
 interface FAQAndCTAProps {
-  onOpenWaitlist: () => void;
   activePalette: AppPalette;
 }
 
-export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist }) => {
+export const FAQAndCTA: React.FC<FAQAndCTAProps> = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
@@ -23,6 +22,10 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist }) => {
     {
       q: 'Where can I access the live application?',
       a: 'You can immediately launch and use the app at app.smritinotes.site! It runs seamlessly in your browser with full local-first offline support.'
+    },
+    {
+      q: 'What is the upcoming Intelligent Autocomplete feature?',
+      a: 'Smriti is adding local inline autocomplete and slash commands. As you type, the engine anticipates your sentence and displays ghost text you can accept with a single tap of Tab ⇥. Typing / summons quick markdown elements like task lists, headings, and code blocks.'
     },
     {
       q: 'What makes Connected Sticky Notes different from regular digital sticky notes?',
@@ -88,7 +91,7 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist }) => {
             <div className="relative z-10 max-w-2xl mx-auto space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF7F2] border border-black/[0.06] text-[#141414] font-mono text-xs font-bold uppercase">
                 <span className="w-2 h-2 rounded-full bg-[#16c847] animate-pulse" />
-                <span>Live on Web • Instant Access</span>
+                <span>Live on Web • Instant Zero-Config Access</span>
               </div>
 
               <h3 className="text-4xl sm:text-6xl font-archivo font-black text-[#141414] tracking-tight leading-[0.92] uppercase">
@@ -99,7 +102,7 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist }) => {
               </h3>
 
               <p className="text-base sm:text-lg text-[#666055] font-normal leading-relaxed">
-                Join thousands who take notes with clarity, custom colorways, and zero tab noise. Available immediately in your browser.
+                Experience note-taking with clarity, custom colorways, and zero tab noise. Available immediately in your browser.
               </p>
 
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -113,12 +116,12 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist }) => {
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
 
-                <button
-                  onClick={onOpenWaitlist}
+                <a
+                  href="#templates"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#141414] bg-[#FAF7F2] hover:bg-[#F0EAE1] border border-black/[0.08] transition-colors"
                 >
-                  <span>Join Early Access List</span>
-                </button>
+                  <span>Explore Templates Demo</span>
+                </a>
               </div>
 
               <div className="pt-4 flex items-center justify-center gap-4 text-xs font-mono text-[#666055]">

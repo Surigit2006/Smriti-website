@@ -4,10 +4,9 @@ import { AppPalette, APP_REDIRECT_URL, CREATOR_NAME } from '../data/palettes';
 
 interface FooterProps {
   activePalette: AppPalette;
-  onOpenWaitlist: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenWaitlist }) => {
+export const Footer: React.FC<FooterProps> = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -48,10 +47,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWaitlist }) => {
             </div>
           </div>
 
-          {/* Current Features */}
+          {/* Core Features */}
           <div>
             <h4 className="font-archivo text-white text-xs font-bold uppercase tracking-wider mb-4">
-              Current Features
+              Core Features
             </h4>
             <ul className="space-y-2.5 text-xs font-mono">
               <li>
@@ -89,9 +88,20 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWaitlist }) => {
             </h4>
             <ul className="space-y-2.5 text-xs font-mono">
               <li>
-                <a href="#connected-notes" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <span>Connected Sticky Notes</span>
+                <a href="#autocomplete" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <span>Inline Autocomplete</span>
+                  <span className="text-[9px] px-1.5 py-0.2 bg-[#0F4C81] text-white rounded">New</span>
+                </a>
+              </li>
+              <li>
+                <a href="#templates" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <span>Notebook Templates</span>
                   <span className="text-[9px] px-1.5 py-0.2 bg-white/10 text-white rounded">Soon</span>
+                </a>
+              </li>
+              <li>
+                <a href="#connected-notes" className="hover:text-white transition-colors">
+                  Connected Sticky Canvas
                 </a>
               </li>
               <li>
@@ -101,17 +111,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWaitlist }) => {
               </li>
               <li>
                 <a href="#roadmap" className="hover:text-white transition-colors">
-                  Ready-to-Use Templates
-                </a>
-              </li>
-              <li>
-                <a href="#roadmap" className="hover:text-white transition-colors">
                   Sketching & Stylus Drawing
-                </a>
-              </li>
-              <li>
-                <a href="#roadmap" className="hover:text-white transition-colors">
-                  AI-Powered Productivity
                 </a>
               </li>
             </ul>
@@ -135,12 +135,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWaitlist }) => {
                 </a>
               </li>
               <li>
-                <button 
-                  onClick={onOpenWaitlist}
-                  className="text-[#A8A29E] hover:text-white transition-colors"
-                >
-                  Join Alpha Waitlist
-                </button>
+                <a href="#templates" className="text-[#A8A29E] hover:text-white transition-colors">
+                  Explore Templates
+                </a>
+              </li>
+              <li>
+                <a href="#autocomplete" className="text-[#A8A29E] hover:text-white transition-colors">
+                  Test Autocomplete Demo
+                </a>
               </li>
               <li>
                 <a href="#roadmap" className="text-[#A8A29E] hover:text-white transition-colors">

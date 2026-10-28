@@ -11,12 +11,9 @@ import { ThreeDCard } from './ThreeDCard';
 
 interface ConnectedStickyNotesShowcaseProps {
   activePalette: AppPalette;
-  onOpenWaitlist: () => void;
 }
 
-export const ConnectedStickyNotesShowcase: React.FC<ConnectedStickyNotesShowcaseProps> = ({
-  onOpenWaitlist,
-}) => {
+export const ConnectedStickyNotesShowcase: React.FC<ConnectedStickyNotesShowcaseProps> = () => {
   const [nodes] = useState([
     {
       id: 'node-1',
@@ -67,7 +64,7 @@ export const ConnectedStickyNotesShowcase: React.FC<ConnectedStickyNotesShowcase
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-xs text-[#0F4C81] font-bold uppercase tracking-widest">
-                [ 04 // SIGNATURE UPCOMING ]
+                [ UPCOMING // VISUAL CANVAS ]
               </span>
               <span className="dovv-chip text-[#F59E0B] text-xs py-0.5 font-bold">
                 Coming Soon
@@ -85,13 +82,15 @@ export const ConnectedStickyNotesShowcase: React.FC<ConnectedStickyNotesShowcase
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            <button
-              onClick={onOpenWaitlist}
+            <a
+              href={APP_REDIRECT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#141414] hover:bg-[#0F4C81] text-white font-archivo font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all hover:scale-105"
             >
-              <span>Request Early Canvas Access</span>
+              <span>Explore in Smriti</span>
               <ArrowUpRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
 

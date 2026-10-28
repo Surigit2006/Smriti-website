@@ -2,12 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { APP_REDIRECT_URL } from '../data/palettes';
 
-interface NavbarProps {
-  onOpenWaitlist: () => void;
-  activePaletteName?: string;
-}
-
-export const Navbar: React.FC<NavbarProps> = () => {
+export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -21,7 +16,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
 
   const navLinks = [
     { label: 'Editor', href: '#editor' },
-    { label: 'Organization', href: '#organization' },
+    { label: 'Templates', href: '#templates' },
+    { label: 'Autocomplete', href: '#autocomplete' },
     { label: 'Palettes', href: '#palettes' },
     { label: 'Canvas', href: '#connected-notes' },
     { label: 'Roadmap', href: '#roadmap' },
@@ -62,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="px-3.5 py-1 text-xs font-medium uppercase tracking-wider text-[#666055] hover:text-[#141414] hover:bg-black/[0.04] rounded-full transition-all duration-200"
+                className="px-3 py-1 text-xs font-medium uppercase tracking-wider text-[#666055] hover:text-[#141414] hover:bg-black/[0.04] rounded-full transition-all duration-200"
               >
                 {link.label}
               </a>
