@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { MarqueeTicker } from './components/MarqueeTicker';
 import { CurvedDome } from './components/CurvedDome';
 import { EditorShowcase } from './components/EditorShowcase';
+import { SpatialNotes3D } from './components/SpatialNotes3D';
 import { ExcalidrawShowcase } from './components/ExcalidrawShowcase';
 import { TemplatesGallery } from './components/TemplatesGallery';
 import { AutocompleteDemo } from './components/AutocompleteDemo';
@@ -15,6 +16,7 @@ import { WhySmriti } from './components/WhySmriti';
 import { FAQAndCTA } from './components/FAQAndCTA';
 import { Footer } from './components/Footer';
 import { ThreeDBackground } from './components/ThreeDBackground';
+import { CustomCursor } from './components/CustomCursor';
 import { DEFAULT_THEME, AppPalette } from './data/palettes';
 
 export function App() {
@@ -25,8 +27,11 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F0E8] text-[#141414] flex flex-col font-sans selection:bg-[#0F4C81] selection:text-white relative antialiased">
-      {/* 3D Atmospheric Background Canvas */}
+    <div className="min-h-screen bg-[#F5F0E8] text-[#141414] flex flex-col font-sans selection:bg-[#0F4C81] selection:text-white relative antialiased cursor-auto">
+      {/* High-End Mouse Sensitive Dual-Ring Magnetic Cursor */}
+      <CustomCursor />
+
+      {/* 3D Atmospheric Background Constellation Canvas */}
       <ThreeDBackground accentColor={activePalette.accent || '#F59E0B'} />
 
       {/* Top sticky navigation */}
@@ -51,46 +56,49 @@ export function App() {
           activePalette={activePalette}
         />
 
-        {/* 5. Highlight: Excalidraw Sketching & System Design Canvas */}
+        {/* 5. Award-Winning Mouse-Sensitive 3D Notes Renders & Spatial Arena */}
+        <SpatialNotes3D />
+
+        {/* 6. Highlight: Excalidraw Sketching & System Design Canvas */}
         <ExcalidrawShowcase />
 
-        {/* 6. Upcoming Feature: Pre-built Notebook Templates & Interactive Demo */}
+        {/* 7. Upcoming Feature: Pre-built Notebook Templates & Interactive Demo */}
         <TemplatesGallery />
 
-        {/* 7. Upcoming Feature: Thought-speed Inline Autocomplete & Slash Commands */}
+        {/* 8. Upcoming Feature: Thought-speed Inline Autocomplete & Slash Commands */}
         <AutocompleteDemo />
 
-        {/* 8. Effortless Organization (Spatial Hierarchy) */}
+        {/* 9. Effortless Organization (Spatial Hierarchy) */}
         <OrganizationShowcase 
           activePalette={activePalette}
         />
 
-        {/* 9. 162 Color Palettes (Balanced Feature Card + Production Theme Modal Screenshot) */}
+        {/* 10. 162 Color Palettes (Balanced Feature Card + Production Theme Modal Screenshot) */}
         <PaletteShowcase 
           activePalette={activePalette}
           onSelectPalette={handleSelectPalette}
         />
 
-        {/* 10. Signature Upcoming Feature: Connected Sticky Notes Canvas */}
+        {/* 11. Signature Upcoming Feature: Connected Sticky Notes Canvas */}
         <ConnectedStickyNotesShowcase 
           activePalette={activePalette}
         />
 
-        {/* 11. Roadmap: Autocomplete, Templates, Cloud Sync, Excalidraw, AI */}
+        {/* 12. Roadmap: Autocomplete, Templates, Cloud Sync, Excalidraw, AI */}
         <RoadmapSection />
 
-        {/* 12. Why Smriti: Unified Writing & Excalidraw Architecture */}
+        {/* 13. Why Smriti: Unified Writing & Excalidraw Architecture */}
         <WhySmriti 
           activePalette={activePalette}
         />
 
-        {/* 13. FAQ & Final Call to Action */}
+        {/* 14. FAQ & Final Call to Action */}
         <FAQAndCTA 
           activePalette={activePalette}
         />
       </main>
 
-      {/* 14. Minimal Footer with Author Attribution placed ONCE at the end */}
+      {/* 15. Minimal Footer with Author Attribution placed ONCE at the end */}
       <Footer 
         activePalette={activePalette}
       />

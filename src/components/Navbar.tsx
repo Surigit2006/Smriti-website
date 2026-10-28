@@ -16,6 +16,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: 'Editor', href: '#editor' },
+    { label: '3D Notes', href: '#spatial-notes' },
     { label: 'Excalidraw', href: '#excalidraw' },
     { label: 'Templates', href: '#templates' },
     { label: 'Autocomplete', href: '#autocomplete' },
@@ -26,7 +27,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
           ? 'bg-[#FAF7F2]/90 backdrop-blur-md border-b border-black/[0.06] py-3.5 shadow-sm'
           : 'bg-transparent py-5'
@@ -54,7 +55,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Nav in DOVV floating pill style */}
-          <nav className="hidden lg:flex items-center gap-1 bg-white/80 border border-black/[0.08] rounded-full px-5 py-1.5 backdrop-blur-md shadow-sm">
+          <nav className="hidden xl:flex items-center gap-1 bg-white/80 border border-black/[0.08] rounded-full px-5 py-1.5 backdrop-blur-md shadow-sm">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -81,7 +82,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="xl:hidden flex items-center gap-2">
             <a
               href={APP_REDIRECT_URL}
               target="_blank"
@@ -102,7 +103,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-3 p-4 bg-white/95 backdrop-blur-xl border border-black/[0.08] rounded-2xl shadow-xl flex flex-col gap-2">
+          <div className="xl:hidden mt-3 p-4 bg-white/95 backdrop-blur-xl border border-black/[0.08] rounded-2xl shadow-xl flex flex-col gap-2">
             {navLinks.map((link) => (
               <a
                 key={link.label}

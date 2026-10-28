@@ -31,13 +31,13 @@ export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor 
     let targetMouseY = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
-      targetMouseX = (e.clientX - width / 2) * 0.05;
-      targetMouseY = (e.clientY - height / 2) * 0.05;
+      targetMouseX = (e.clientX - width / 2) * 0.08;
+      targetMouseY = (e.clientY - height / 2) * 0.08;
     };
     window.addEventListener('mousemove', handleMouseMove);
 
     // Subtle ambient dust/particles from the artwork palette
-    const PARTICLE_COUNT = 45;
+    const PARTICLE_COUNT = 55;
     interface Particle3D {
       x: number;
       y: number;
@@ -52,22 +52,24 @@ export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor 
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       particles.push({
-        x: (Math.random() - 0.5) * width * 1.4,
-        y: (Math.random() - 0.5) * height * 1.4,
+        x: (Math.random() - 0.5) * width * 1.5,
+        y: (Math.random() - 0.5) * height * 1.5,
         z: Math.random() * 1000,
         size: Math.random() * 2 + 1,
         color: colors[Math.floor(Math.random() * colors.length)],
-        speedZ: Math.random() * 0.4 + 0.1,
+        speedZ: Math.random() * 0.4 + 0.15,
       });
     }
 
-    const fov = 400;
+    const fov = 420;
 
     const render = () => {
-      mouseX += (targetMouseX - mouseX) * 0.04;
-      mouseY += (targetMouseY - mouseY) * 0.04;
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
 
       ctx.clearRect(0, 0, width, height);
+
+      const projectedCoords: { x: number; y: number; z: number }[] = [];
 
       // Render 3D particles with perspective projection
       for (let i = 0; i < particles.length; i++) {
@@ -75,21 +77,43 @@ export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor 
         p.z -= p.speedZ;
         if (p.z <= 0) {
           p.z = 1000;
-          p.x = (Math.random() - 0.5) * width * 1.4;
-          p.y = (Math.random() - 0.5) * height * 1.4;
+          p.x = (Math.random() - 0.5) * width * 1.5;
+          p.y = (Math.random() - 0.5) * height * 1.5;
         }
 
         const scale = fov / (fov + p.z);
         const projX = (p.x - mouseX) * scale + width / 2;
         const projY = (p.y - mouseY) * scale + height / 2;
 
+        projectedCoords.push({ x: projX, y: projY, z: p.z });
+
         if (projX >= 0 && projX <= width && projY >= 0 && projY <= height) {
-          const alpha = (1 - p.z / 1000) * 0.35;
+          const alpha = (1 - p.z / 1000) * 0.4;
           ctx.beginPath();
           ctx.arc(projX, projY, p.size * scale, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
           ctx.globalAlpha = alpha;
           ctx.fill();
+        }
+      }
+
+      // Draw faint geometric constellation lines between nearby 3D points
+      for (let i = 0; i < projectedCoords.length; i++) {
+        for (let j = i + 1; j < projectedCoords.length; j++) {
+          const dx = projectedCoords[i].x - projectedCoords[j].x;
+          const dy = projectedCoords[i].y - projectedCoords[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 100) {
+            const alpha = (1 - dist / 100) * 0.08 * (1 - projectedCoords[i].z / 1000);
+            ctx.beginPath();
+            ctx.moveTo(projectedCoords[i].x, projectedCoords[i].y);
+            ctx.lineTo(projectedCoords[j].x, projectedCoords[j].y);
+            ctx.strokeStyle = '#0F4C81';
+            ctx.globalAlpha = alpha;
+            ctx.lineWidth = 0.75;
+            ctx.stroke();
+          }
         }
       }
 
@@ -109,7 +133,7 @@ export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-70"
+      className="fixed inset-0 pointer-events-none z-0 opacity-60"
     />
   );
 };

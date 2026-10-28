@@ -13,9 +13,9 @@ export const ThreeDCard: React.FC<ThreeDCardProps> = ({
   children,
   className = '',
   style = {},
-  maxTilt = 15,
+  maxTilt = 8,
   glare = true,
-  scale = 1.02,
+  scale = 1.015,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotateX, setRotateX] = useState(0);
@@ -42,7 +42,7 @@ export const ThreeDCard: React.FC<ThreeDCardProps> = ({
       setGlarePos({
         x: (x / rect.width) * 100,
         y: (y / rect.height) * 100,
-        opacity: 0.35,
+        opacity: 0.18,
       });
     }
   };
@@ -76,12 +76,12 @@ export const ThreeDCard: React.FC<ThreeDCardProps> = ({
     >
       {children}
 
-      {/* Dynamic Specular 3D Glare */}
+      {/* Dynamic Specular 3D Glare & Lighting */}
       {glare && (
         <div
           className="pointer-events-none absolute inset-0 rounded-[inherit] transition-opacity duration-300"
           style={{
-            background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,${glarePos.opacity}) 0%, transparent 60%)`,
+            background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,${glarePos.opacity}) 0%, transparent 65%)`,
             mixBlendMode: 'overlay',
           }}
         />
@@ -89,4 +89,3 @@ export const ThreeDCard: React.FC<ThreeDCardProps> = ({
     </div>
   );
 };
-
