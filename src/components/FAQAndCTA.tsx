@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Sparkles, ArrowUpRight, ShieldCheck, HelpCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { ColorPalette, APP_REDIRECT_URL, CREATOR_NAME } from '../data/palettes';
 import { ThreeDCard } from './ThreeDCard';
 
@@ -35,17 +35,17 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist, activePale
   ];
 
   return (
-    <section className="py-24 relative bg-[#070b12] border-t border-white/5 overflow-hidden">
+    <section className="py-24 sm:py-32 relative bg-[#05080c] border-t border-[#1c1c1c] overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* FAQ Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 text-xs font-semibold uppercase tracking-wider mb-4">
-            <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
-            <span>Frequently Asked Questions</span>
+          <div className="font-mono text-xs text-[#ed4a1c] font-bold uppercase tracking-widest mb-3">
+            [ 07 // FREQUENTLY ASKED QUESTIONS ]
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Everything you need to know about Smriti.
+          <h2 className="text-4xl sm:text-5xl font-archivo font-black text-white tracking-tight uppercase">
+            EVERYTHING YOU NEED<br />
+            <span className="text-[#c6f432]">TO KNOW ABOUT SMRITI.</span>
           </h2>
         </div>
 
@@ -56,22 +56,24 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist, activePale
             return (
               <div
                 key={idx}
-                className="rounded-2xl bg-slate-900/60 border border-white/10 overflow-hidden transition-all duration-200"
+                className="dovv-card p-0 rounded-2xl overflow-hidden"
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 text-white hover:text-amber-300 transition-colors"
+                  className="w-full p-6 text-left flex items-center justify-between gap-4 text-white hover:text-[#c6f432] transition-colors"
                 >
-                  <span className="font-semibold text-base sm:text-lg">{faq.q}</span>
+                  <span className="font-archivo text-lg sm:text-xl font-bold uppercase tracking-tight">
+                    {faq.q}
+                  </span>
                   {isOpen ? (
-                    <ChevronUp className="w-5 h-5 text-amber-400 shrink-0" />
+                    <ChevronUp className="w-5 h-5 text-[#ed4a1c] shrink-0" />
                   ) : (
                     <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
                   )}
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 text-sm text-slate-300 leading-relaxed border-t border-white/5 pt-3">
+                  <div className="px-6 pb-6 text-sm text-slate-300 font-mono leading-relaxed border-t border-[#1c1c1c] pt-4">
                     {faq.a}
                   </div>
                 )}
@@ -80,36 +82,23 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist, activePale
           })}
         </div>
 
-        {/* Final 3D Call to Action Banner with direct redirect to app.smritinotes.site */}
+        {/* Final Monumental CTA Banner in DOVV Style */}
         <ThreeDCard maxTilt={6}>
-          <div 
-            className="relative rounded-3xl p-8 sm:p-14 overflow-hidden border text-center shadow-2xl transition-all duration-500"
-            style={{
-              backgroundColor: '#0c1222',
-              borderColor: `${activePalette.accent}50`,
-              boxShadow: `0 30px 80px -15px ${activePalette.accent}35`
-            }}
-          >
-            {/* Ambient Glow */}
-            <div 
-              className="absolute inset-0 opacity-25 pointer-events-none blur-3xl"
-              style={{
-                background: `radial-gradient(circle, ${activePalette.accent} 0%, ${activePalette.secondary} 50%, transparent 80%)`
-              }}
-            />
-
+          <div className="dovv-card p-8 sm:p-14 text-center rounded-[32px] border-2 border-[#ed4a1c] relative overflow-hidden">
             <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold border border-amber-400/40">
-                <Sparkles className="w-4 h-4 text-amber-300" />
-                <span>Created by {CREATOR_NAME} • Live on Web</span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white font-mono text-xs font-bold uppercase">
+                <span>Handcrafted by {CREATOR_NAME} • Live on Web</span>
               </div>
 
-              <h3 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                Ready to give your thoughts a better space?
+              <h3 className="text-4xl sm:text-6xl font-archivo font-black text-white tracking-tight leading-[0.92] uppercase">
+                YOUR THOUGHTS<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ed4a1c] via-[#facc15] to-[#c6f432]">
+                  DESERVE A BETTER SPACE.
+                </span>
               </h3>
 
-              <p className="text-base sm:text-lg text-slate-300">
-                Start writing immediately with 162 color palettes, instant offline speed, and zero tab clutter.
+              <p className="text-base sm:text-lg text-slate-300 font-normal">
+                Join deep thinkers, writers, and students creating clear mental models with Smriti Notes.
               </p>
 
               <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -117,10 +106,10 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist, activePale
                   href={APP_REDIRECT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl text-base font-extrabold text-black bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 shadow-2xl shadow-amber-500/40 transition-all hover:scale-105"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-base font-anton uppercase tracking-wider text-white bg-[#ed4a1c] hover:bg-[#ff5d33] shadow-2xl shadow-[#ed4a1c]/40 transition-all hover:scale-105"
                 >
-                  <span>Open Smriti App</span>
-                  <span className="text-xs font-mono bg-black/15 px-2 py-0.5 rounded font-bold">
+                  <span>Launch Smriti App</span>
+                  <span className="text-xs font-mono lowercase bg-black/20 px-2.5 py-1 rounded-full font-sans">
                     app.smritinotes.site
                   </span>
                   <ArrowUpRight className="w-4 h-4 ml-0.5" />
@@ -128,14 +117,14 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ onOpenWaitlist, activePale
 
                 <a
                   href="#palettes"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl text-base font-semibold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-slate-300 hover:text-white bg-[#111622] hover:bg-[#1a2233] border border-[#222] transition-colors"
                 >
                   Explore 162 Palettes
                 </a>
               </div>
 
-              <div className="flex items-center justify-center gap-3 text-xs text-slate-400 pt-3">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <div className="flex items-center justify-center gap-3 text-xs text-slate-400 font-mono pt-3">
+                <ShieldCheck className="w-4 h-4 text-[#c6f432]" />
                 <span>Offline-first • Zero tracking • Handcrafted with love</span>
               </div>
             </div>

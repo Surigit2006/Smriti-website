@@ -8,36 +8,52 @@ export default {
   theme: {
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        dovv: {
+          bg: '#05080c',
+          dark: '#080808',
+          card: '#111622',
+          surface: '#171d2c',
+          slate: '#1c1c1c',
+          border: '#222222',
+          accent: '#ed4a1c', // iconic DOVV studio vermillion
+          lime: '#c6f432',   // DOVV neon lime
+          silver: '#dadadb',
+          nickel: '#aaa9ad',
+          gray: '#5b5b5b',
+        }
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
-        handwriting: ['"Caveat"', '"Architects Daughter"', 'cursive'],
+        anton: ['"Anton"', 'Impact', 'sans-serif'],
+        archivo: ['"Archivo"', '"Anton"', 'Impact', 'sans-serif'],
+        mono: ['"DM Mono"', 'monospace'],
+        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        handwriting: ['"Caveat"', 'cursive'],
+      },
+      boxShadow: {
+        'dovv-card': 'inset 0 0 0 1px #222222, 0 4px 28px 4px rgba(0,0,0,0.5)',
+        'dovv-chip': 'inset 0 0 0 1px #262626',
+        'dovv-pill': '0 0 0 1px rgba(0,0,0,0.1), 0 10px 24px -8px rgba(0,0,0,0.22)',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
-        pulseGlow: {
-          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-          '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+        marqueeReverse: {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' }
+        stickerFloat: {
+          '0%, 100%': { transform: 'translateY(0px) rotate(var(--rot, 0deg))' },
+          '50%': { transform: 'translateY(-6px) rotate(calc(var(--rot, 0deg) + 2deg))' },
         }
       },
       animation: {
-        float: 'float 5s ease-in-out infinite',
-        pulseGlow: 'pulseGlow 6s ease-in-out infinite',
-        shimmer: 'shimmer 2.5s infinite linear',
+        marquee: 'marquee 25s linear infinite',
+        marqueeReverse: 'marqueeReverse 25s linear infinite',
+        stickerFloat: 'stickerFloat 6s ease-in-out infinite',
       }
     },
   },
   plugins: [],
 }
-
