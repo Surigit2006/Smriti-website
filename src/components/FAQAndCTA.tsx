@@ -12,12 +12,12 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = () => {
 
   const faqs = [
     {
-      q: 'Why did Smriti replace the tab-based structure?',
-      a: 'Tabs were originally made for navigating disjointed web pages, not for deep creative thought. Users found themselves drowning in 40+ unlabeled tabs. Smriti replaced tabs with an intuitive spatial hierarchy: Folders, Pinned Notes, and sub-millisecond ⌘K search, giving you complete mental clarity.'
+      q: 'How does the Excalidraw sketching & system design integration work?',
+      a: 'Smriti embeds an infinite Excalidraw vector canvas directly inside your workspace. You can sketch cloud microservice topologies, relational database ERDs, state machines, and UI wireframes with Excalidraw’s signature hand-drawn style. Every diagram links directly to your notes and exports cleanly to SVG or PNG.'
     },
     {
-      q: 'How do the 162 color palettes and official themes work?',
-      a: 'Smriti includes 162 hand-tuned color schemes featuring official app palettes like Paper Ink, Linen, Pink Riot, Cobalt Block, Mint Slab, Orange Crush, Lilac Slap, and Sky Slap. Furthermore, you can assign custom Hex codes directly to pen inks, highlighters, and accents.'
+      q: 'Can I apply Smriti’s 162 color palettes to my Excalidraw diagrams?',
+      a: 'Yes! When you pick any of Smriti’s 162 hand-tuned colorways, both your notebook typography and your Excalidraw whiteboard elements adopt matching stroke inks, hachure fills, and pastel highlights automatically.'
     },
     {
       q: 'Where can I access the live application?',
@@ -102,7 +102,7 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = () => {
               </h3>
 
               <p className="text-base sm:text-lg text-[#666055] font-normal leading-relaxed">
-                Experience note-taking with clarity, custom colorways, and zero tab noise. Available immediately in your browser.
+                Experience note-taking with clarity, Excalidraw system design, custom colorways, and zero friction. Available immediately in your browser.
               </p>
 
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -117,10 +117,10 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = () => {
                 </a>
 
                 <a
-                  href="#templates"
+                  href="#excalidraw"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#141414] bg-[#FAF7F2] hover:bg-[#F0EAE1] border border-black/[0.08] transition-colors"
                 >
-                  <span>Explore Templates Demo</span>
+                  <span>Explore Excalidraw Canvas</span>
                 </a>
               </div>
 

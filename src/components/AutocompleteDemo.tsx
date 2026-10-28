@@ -31,22 +31,22 @@ const SCENARIOS: Scenario[] = [
     id: 'deep-work',
     label: 'Deep Work Habit',
     prefix: 'The highest leverage work happens when ',
-    ghost: 'friction drops to absolute zero and distractions are eliminated.',
-    continuation: '\n\n### Daily Routine\n1. 90-minute morning deep work block\n2. Zero tabs, zero notifications\n3. Capture emergent ideas directly into local-first notes'
+    ghost: 'friction drops to absolute zero and thoughts flow into text without distraction.',
+    continuation: '\n\n### Daily Routine\n1. 90-minute morning deep work block\n2. Unified notes and Excalidraw architecture sketching\n3. Capture emergent ideas directly into local-first notes'
   },
   {
     id: 'architecture',
-    label: 'Architecture Decision',
-    prefix: 'We decided against traditional browser tabs because ',
-    ghost: 'they cause cognitive fragmentation and treat ideas like disposable web pages.',
-    continuation: '\n\n**Consequences**:\n- Users retain spatial memory of where their thoughts live.\n- Instant local disk indexing guarantees sub-10ms search.'
+    label: 'System Design & Excalidraw',
+    prefix: 'We integrated Excalidraw directly into notes because ',
+    ghost: 'system design architectures and technical prose belong on one unified canvas.',
+    continuation: '\n\n**Key Capabilities**:\n- Hand-drawn microservice maps, cloud topologies, and database ERDs.\n- 162 hand-tuned palette stroke colors with zero tool-switching.'
   },
   {
     id: 'sprint',
     label: 'Sprint Planning',
     prefix: 'Our primary objective for this milestone is to ',
     ghost: 'deliver fluid connected sticky notes and intelligent slash-command completion.',
-    continuation: '\n\n- [x] 162 colorway themes engine\n- [x] First-class rich text markdown editor\n- [ ] Inline autocomplete with Tab completion'
+    continuation: '\n\n- [x] 162 colorway themes engine\n- [x] Embedded Excalidraw system design whiteboard\n- [ ] Inline autocomplete with Tab completion'
   },
   {
     id: 'code-rfc',

@@ -2,23 +2,23 @@ import React from 'react';
 
 export const MarqueeTicker: React.FC = () => {
   const items1 = [
+    'EXCALIDRAW SYSTEM DESIGN',
     'FIRST-CLASS NOTE EDITOR',
-    'ZERO BROWSER TABS',
+    'HAND-DRAWN CLOUD TOPOLOGIES',
     'CONNECTED STICKY NOTES',
     'LOCAL-FIRST SPEED',
+    'DATABASE ERD MODELING',
     'APP.SMRITINOTES.SITE',
-    'SPATIAL CLARITY',
     '162 CURATED COLORWAYS',
-    'DISTRACTION-FREE WRITING',
   ];
 
   const items2 = [
+    'MICROSERVICES CANVAS',
     'PAPER INK',
     'COBALT BLOCK',
     'MINT SLAB',
     'ORANGE CRUSH',
-    'LILAC SLAP',
-    'SKY SLAP',
+    'STATE MACHINE FLOWS',
     'PEACOCK & GOLD',
     'OFFLINE PRIVACY',
   ];

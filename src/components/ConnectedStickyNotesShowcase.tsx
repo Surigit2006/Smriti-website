@@ -19,19 +19,19 @@ export const ConnectedStickyNotesShowcase: React.FC<ConnectedStickyNotesShowcase
       id: 'node-1',
       title: 'Problem Framing',
       color: '#F59E0B',
-      content: 'Thoughts get scattered when trapped in 40 browser tabs. Spatial clarity is essential.',
+      content: 'Thoughts get scattered across disconnected tools. Spatial visual clarity is essential.',
       x: 30,
       y: 40,
       linkedDoc: 'Spatial Architecture RFC'
     },
     {
       id: 'node-2',
-      title: 'Palette Engine',
+      title: 'Excalidraw Engine',
       color: '#E87A90',
-      content: '162 hand-tuned themes calibrated for mood, lighting conditions, and cognition.',
+      content: 'Hand-drawn architecture sketches, microservice topologies, and ER diagrams.',
       x: 310,
       y: 35,
-      linkedDoc: 'Visual Design Spec'
+      linkedDoc: 'Excalidraw Design Spec'
     },
     {
       id: 'node-3',

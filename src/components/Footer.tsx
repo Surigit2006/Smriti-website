@@ -31,7 +31,7 @@ export const Footer: React.FC<FooterProps> = () => {
             </div>
 
             <p className="text-[#A8A29E] text-xs sm:text-sm leading-relaxed max-w-sm font-sans">
-              A distraction-free notebook for writing, planning, sketching, and connecting ideas — designed around the way you think without tab clutter.
+              A distraction-free notebook for writing, Excalidraw system design, planning, and connecting ideas — designed around the way you think with zero friction.
             </p>
 
             <div className="pt-2">
@@ -59,8 +59,8 @@ export const Footer: React.FC<FooterProps> = () => {
                 </a>
               </li>
               <li>
-                <a href="#organization" className="hover:text-white transition-colors">
-                  Folders & Pinned Notes
+                <a href="#excalidraw" className="hover:text-white transition-colors">
+                  Excalidraw Whiteboard
                 </a>
               </li>
               <li>
@@ -70,12 +70,12 @@ export const Footer: React.FC<FooterProps> = () => {
               </li>
               <li>
                 <a href="#organization" className="hover:text-white transition-colors">
-                  Command Bar (⌘K)
+                  Folders & Pinned Notes
                 </a>
               </li>
               <li>
                 <a href="#organization" className="hover:text-white transition-colors">
-                  Archive & Trash
+                  Command Bar (⌘K)
                 </a>
               </li>
             </ul>
@@ -110,8 +110,8 @@ export const Footer: React.FC<FooterProps> = () => {
                 </a>
               </li>
               <li>
-                <a href="#roadmap" className="hover:text-white transition-colors">
-                  Sketching & Stylus Drawing
+                <a href="#excalidraw" className="hover:text-white transition-colors">
+                  System Design Templates
                 </a>
               </li>
             </ul>
@@ -135,6 +135,11 @@ export const Footer: React.FC<FooterProps> = () => {
                 </a>
               </li>
               <li>
+                <a href="#excalidraw" className="text-[#A8A29E] hover:text-white transition-colors">
+                  System Architecture Canvas
+                </a>
+              </li>
+              <li>
                 <a href="#templates" className="text-[#A8A29E] hover:text-white transition-colors">
                   Explore Templates
                 </a>
@@ -142,11 +147,6 @@ export const Footer: React.FC<FooterProps> = () => {
               <li>
                 <a href="#autocomplete" className="text-[#A8A29E] hover:text-white transition-colors">
                   Test Autocomplete Demo
-                </a>
-              </li>
-              <li>
-                <a href="#roadmap" className="text-[#A8A29E] hover:text-white transition-colors">
-                  Vote on Features
                 </a>
               </li>
             </ul>
@@ -180,7 +180,7 @@ export const Footer: React.FC<FooterProps> = () => {
             <span>•</span>
             <span>100% Local-First Data</span>
             <span>•</span>
-            <span>Zero Tab Clutter</span>
+            <span>Excalidraw System Design</span>
           </div>
         </div>
       </div>

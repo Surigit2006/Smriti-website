@@ -9,7 +9,8 @@ import {
   Quote,
   Code,
   Sparkles,
-  Check
+  Check,
+  PenTool
 } from 'lucide-react';
 import { AppPalette, APP_REDIRECT_URL } from '../data/palettes';
 import { ThreeDCard } from './ThreeDCard';
@@ -22,19 +23,20 @@ export const EditorShowcase: React.FC<EditorShowcaseProps> = () => {
   const [editorText, setEditorText] = useState(
 `# Thoughts on Deep Craft & Spatial Writing
 
-When thinking isn't constrained by 40 browser tabs, clarity emerges naturally.
+When thinking isn't fragmented across disparate tools, clarity emerges naturally.
 
 ### Principles of Smriti
 - **Zero Latency**: Writing should feel as immediate as ink on fine paper.
 - **Cognitive Serenity**: No popups, no distracting notifications, no unnecessary clutter.
-- **Structured Freedom**: Rich markdown when you want it, plain text when you don't.
+- **Unified Sketching**: Excalidraw whiteboards live directly inside your markdown notes.
+- **Structured Freedom**: Rich markdown when you want it, hand-drawn vector diagrams when you need them.
 
 > "Simplicity is about subtracting the obvious and adding the meaningful."
 
-- [x] Distraction-free single window
+- [x] Distraction-free writing experience
 - [x] Instant keyboard shortcuts (⌘B, ⌘I, ⌘K)
-- [x] Local-first data safety
-- [ ] Connected visual canvas (coming soon)`
+- [x] Local-first data safety & offline speed
+- [x] Excalidraw system design integration`
   );
 
   const words = editorText.trim() ? editorText.trim().split(/\s+/).filter(Boolean).length : 0;
@@ -66,7 +68,7 @@ When thinking isn't constrained by 40 browser tabs, clarity emerges naturally.
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-[#666055] leading-relaxed max-w-2xl font-normal">
-              A polished writing experience with rich-text formatting and tools for organizing ideas. No tab overload, no laggy cloud pauses — just effortless expression.
+              A polished writing experience with rich-text formatting and tools for organizing ideas. No tool fragmentation, no laggy cloud pauses — just effortless expression.
             </p>
           </div>
 
@@ -149,6 +151,15 @@ When thinking isn't constrained by 40 browser tabs, clarity emerges naturally.
                   <Code className="w-3.5 h-3.5" />
                   <span>Code</span>
                 </button>
+
+                <a
+                  href="#excalidraw"
+                  className="px-3 py-1.5 rounded-lg bg-[#0F4C81]/10 hover:bg-[#0F4C81]/20 text-[#0F4C81] text-xs font-mono font-bold flex items-center gap-1 transition-colors"
+                  title="Excalidraw Whiteboard"
+                >
+                  <PenTool className="w-3.5 h-3.5" />
+                  <span>Excalidraw</span>
+                </a>
               </div>
 
               {/* Status indicators */}
@@ -177,7 +188,7 @@ When thinking isn't constrained by 40 browser tabs, clarity emerges naturally.
             <div className="pt-6 mt-6 border-t border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#666055]">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
-                <span>Full Markdown support • Export anytime to Markdown or JSON</span>
+                <span>Full Markdown support • Excalidraw embeds • Export anytime to Markdown or JSON</span>
               </div>
 
               <a

@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { 
   ArrowUpRight, 
-  Flame,
-  CheckCircle2,
-  Folder,
-  FileText,
-  Search,
-  PenTool,
-  Check,
-  Sparkles,
+  PenTool, 
+  CheckCircle2, 
+  Folder, 
+  FileText, 
+  Search, 
+  Check, 
+  Sparkles, 
   ExternalLink,
-  ZoomIn,
-  Eye,
-  Sliders
+  Workflow,
+  Server
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AppPalette, APP_REDIRECT_URL } from '../data/palettes';
@@ -26,7 +24,7 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = () => {
   const [viewMode, setViewMode] = useState<'interactive' | 'screenshot'>('interactive');
   const [editorText, setEditorText] = useState(
-    `# Deep Thinking in the Age of Noise\n\nThe highest leverage work happens when friction drops to absolute zero.\n\n### Why Smriti Removed Tabs\n1. Cognitive Overhead — 40 open tabs create visual fatigue.\n2. Context Loss — Thoughts aren't throwaway browser sessions.\n3. Spatial Focus — Folders, pinned notes, and upcoming canvas stickies.\n\n> "Simplicity is prerequisite for reliability and depth."`
+    `# Deep Thinking & System Architecture\n\nThe highest leverage work happens when technical writing and system sketching live together seamlessly.\n\n### Why Smriti Unifies Notes & Excalidraw\n1. Thought Continuity — Write specs and sketch architectures on one canvas.\n2. System Modeling — Microservices, database ERDs, and state machines with zero tool-hopping.\n3. Spatial Focus — Folders, pinned priorities, and upcoming canvas stickies.\n\n> "Simplicity is prerequisite for reliability and depth."`
   );
 
   return (
@@ -82,7 +80,7 @@ export const Hero: React.FC<HeroProps> = () => {
             </div>
           </motion.div>
 
-          {/* Floating Sticker 2: Minimal "NO BROWSER TABS" Badge */}
+          {/* Floating Sticker 2: Excalidraw Canvas & System Design Badge */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8, rotate: 15 }}
             animate={{ opacity: 1, scale: 1, rotate: 8 }}
@@ -91,8 +89,8 @@ export const Hero: React.FC<HeroProps> = () => {
             style={{ '--rot': '8deg' } as React.CSSProperties}
           >
             <div className="px-4 py-2 rounded-full bg-[#141414] text-[#FAF7F2] font-mono font-bold text-xs uppercase tracking-wider shadow-lg border border-black/10 flex items-center gap-1.5">
-              <Flame className="w-3.5 h-3.5 text-[#F59E0B]" />
-              <span>NO BROWSER TABS</span>
+              <PenTool className="w-3.5 h-3.5 text-[#F59E0B]" />
+              <span>EXCALIDRAW CANVAS</span>
             </div>
           </motion.div>
 
@@ -118,7 +116,7 @@ export const Hero: React.FC<HeroProps> = () => {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="max-w-2xl mx-auto text-base sm:text-lg text-[#666055] font-normal leading-relaxed mb-8"
         >
-          A calm, distraction-free notebook for writing, planning, sketching, and connecting ideas — designed around the way you think without tab clutter.
+          A calm, distraction-free notebook for writing, system design, Excalidraw sketching, and connecting ideas — unified on an instant local-first canvas.
         </motion.p>
 
         {/* Balanced Feature Chips */}
@@ -131,14 +129,14 @@ export const Hero: React.FC<HeroProps> = () => {
           <a href="#editor" className="dovv-chip">
             ✍️ First-Class Editor
           </a>
+          <a href="#excalidraw" className="dovv-chip text-[#0F4C81] font-bold">
+            📐 Excalidraw Whiteboard
+          </a>
           <a href="#templates" className="dovv-chip">
             📋 Note Templates
           </a>
           <a href="#autocomplete" className="dovv-chip">
             ⚡ Inline Autocomplete
-          </a>
-          <a href="#organization" className="dovv-chip">
-            🗂️ Zero Tab Clutter
           </a>
           <a href="#palettes" className="dovv-chip">
             🎨 162 Palettes
@@ -169,10 +167,10 @@ export const Hero: React.FC<HeroProps> = () => {
           </a>
 
           <a
-            href="#templates"
+            href="#excalidraw"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#141414] bg-white hover:bg-[#FAF7F2] border border-black/[0.08] shadow-sm transition-colors"
           >
-            <span>Explore Templates Demo</span>
+            <span>Explore Excalidraw Whiteboard</span>
           </a>
         </motion.div>
 
@@ -238,7 +236,7 @@ export const Hero: React.FC<HeroProps> = () => {
               {/* Window Content */}
               {viewMode === 'interactive' ? (
                 <div className="grid grid-cols-1 md:grid-cols-12 min-h-[460px]">
-                  {/* Left Sidebar (No tabs - Spatial hierarchy) */}
+                  {/* Left Sidebar (Spatial hierarchy) */}
                   <div className="md:col-span-4 bg-[#FAF7F2]/70 border-r border-black/[0.06] p-4 flex flex-col justify-between">
                     <div>
                       {/* Brand & New note */}
@@ -268,15 +266,15 @@ export const Hero: React.FC<HeroProps> = () => {
                         <div className="space-y-1">
                           <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-black/[0.04] text-xs font-semibold text-[#141414]">
                             <Folder className="w-3.5 h-3.5 text-[#0F4C81]" />
-                            <span>Architecture & Essays</span>
+                            <span>System Architecture & RFCs</span>
+                          </div>
+                          <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs text-[#666055] hover:bg-black/[0.02]">
+                            <Folder className="w-3.5 h-3.5 text-black/40" />
+                            <span>Excalidraw Whiteboards</span>
                           </div>
                           <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs text-[#666055] hover:bg-black/[0.02]">
                             <Folder className="w-3.5 h-3.5 text-black/40" />
                             <span>Daily Journal & Thoughts</span>
-                          </div>
-                          <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs text-[#666055] hover:bg-black/[0.02]">
-                            <Folder className="w-3.5 h-3.5 text-black/40" />
-                            <span>Product Roadmap</span>
                           </div>
                         </div>
                       </div>
@@ -289,7 +287,7 @@ export const Hero: React.FC<HeroProps> = () => {
                         <div className="space-y-1">
                           <div className="p-2.5 rounded-xl bg-white border border-black/[0.07] shadow-xs">
                             <div className="text-xs font-bold text-[#141414] truncate mb-1">
-                              Deep Thinking in the Age of Noise
+                              Deep Thinking & System Architecture
                             </div>
                             <div className="text-[10px] font-mono text-[#666055] flex items-center justify-between">
                               <span>Oct 28</span>
@@ -298,13 +296,13 @@ export const Hero: React.FC<HeroProps> = () => {
                           </div>
 
                           <div className="p-2 rounded-lg text-xs text-[#666055] hover:bg-black/[0.03]">
-                            <div className="truncate font-medium">Design Systems & 162 Palettes</div>
-                            <span className="text-[10px] font-mono text-black/40">Oct 26</span>
+                            <div className="truncate font-medium">Excalidraw Microservices Map</div>
+                            <span className="text-[10px] font-mono text-black/40">Oct 27</span>
                           </div>
 
                           <div className="p-2 rounded-lg text-xs text-[#666055] hover:bg-black/[0.03]">
-                            <div className="truncate font-medium">Weekly Reflections & Systems</div>
-                            <span className="text-[10px] font-mono text-black/40">Oct 24</span>
+                            <div className="truncate font-medium">162 Palettes Engine & Colors</div>
+                            <span className="text-[10px] font-mono text-black/40">Oct 26</span>
                           </div>
                         </div>
                       </div>
@@ -327,9 +325,9 @@ export const Hero: React.FC<HeroProps> = () => {
                         <span className="px-2 py-1 text-xs font-bold font-mono text-[#141414] bg-black/5 rounded">H2</span>
                         <span className="px-2 py-1 text-xs font-bold font-mono text-[#141414] bg-black/5 rounded">B</span>
                         <span className="px-2 py-1 text-xs italic font-mono text-[#141414] bg-black/5 rounded">I</span>
+                        <span className="px-2 py-1 text-xs font-mono text-[#0F4C81] bg-[#0F4C81]/10 rounded font-bold">✏️ Excalidraw</span>
                         <span className="px-2 py-1 text-xs font-mono text-[#141414] bg-black/5 rounded">Quote</span>
                         <span className="px-2 py-1 text-xs font-mono text-[#141414] bg-black/5 rounded">Code</span>
-                        <span className="px-2 py-1 text-xs font-mono text-[#141414] bg-black/5 rounded">Checklist</span>
                       </div>
 
                       {/* Editable text simulation */}

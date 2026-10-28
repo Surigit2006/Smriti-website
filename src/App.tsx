@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { MarqueeTicker } from './components/MarqueeTicker';
 import { CurvedDome } from './components/CurvedDome';
 import { EditorShowcase } from './components/EditorShowcase';
+import { ExcalidrawShowcase } from './components/ExcalidrawShowcase';
 import { TemplatesGallery } from './components/TemplatesGallery';
 import { AutocompleteDemo } from './components/AutocompleteDemo';
 import { OrganizationShowcase } from './components/OrganizationShowcase';
@@ -50,43 +51,46 @@ export function App() {
           activePalette={activePalette}
         />
 
-        {/* 5. Upcoming Feature: Pre-built Notebook Templates & Interactive Demo */}
+        {/* 5. Highlight: Excalidraw Sketching & System Design Canvas */}
+        <ExcalidrawShowcase />
+
+        {/* 6. Upcoming Feature: Pre-built Notebook Templates & Interactive Demo */}
         <TemplatesGallery />
 
-        {/* 6. Upcoming Feature: Thought-speed Inline Autocomplete & Slash Commands */}
+        {/* 7. Upcoming Feature: Thought-speed Inline Autocomplete & Slash Commands */}
         <AutocompleteDemo />
 
-        {/* 7. Effortless Organization (Spatial Hierarchy, No Tabs) */}
+        {/* 8. Effortless Organization (Spatial Hierarchy) */}
         <OrganizationShowcase 
           activePalette={activePalette}
         />
 
-        {/* 8. 162 Color Palettes (Balanced Feature Card + Production Theme Modal Screenshot) */}
+        {/* 9. 162 Color Palettes (Balanced Feature Card + Production Theme Modal Screenshot) */}
         <PaletteShowcase 
           activePalette={activePalette}
           onSelectPalette={handleSelectPalette}
         />
 
-        {/* 9. Signature Upcoming Feature: Connected Sticky Notes Canvas */}
+        {/* 10. Signature Upcoming Feature: Connected Sticky Notes Canvas */}
         <ConnectedStickyNotesShowcase 
           activePalette={activePalette}
         />
 
-        {/* 10. Roadmap: Autocomplete, Templates, Cloud Sync, Sketching, AI */}
+        {/* 11. Roadmap: Autocomplete, Templates, Cloud Sync, Excalidraw, AI */}
         <RoadmapSection />
 
-        {/* 11. Why Smriti: Architectural evolution (Zero Tabs) */}
+        {/* 12. Why Smriti: Unified Writing & Excalidraw Architecture */}
         <WhySmriti 
           activePalette={activePalette}
         />
 
-        {/* 12. FAQ & Final Call to Action */}
+        {/* 13. FAQ & Final Call to Action */}
         <FAQAndCTA 
           activePalette={activePalette}
         />
       </main>
 
-      {/* 13. Minimal Footer with Author Attribution placed ONCE at the end */}
+      {/* 14. Minimal Footer with Author Attribution placed ONCE at the end */}
       <Footer 
         activePalette={activePalette}
       />

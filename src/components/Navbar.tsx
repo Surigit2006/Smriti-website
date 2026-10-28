@@ -16,6 +16,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: 'Editor', href: '#editor' },
+    { label: 'Excalidraw', href: '#excalidraw' },
     { label: 'Templates', href: '#templates' },
     { label: 'Autocomplete', href: '#autocomplete' },
     { label: 'Palettes', href: '#palettes' },
@@ -53,7 +54,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Nav in DOVV floating pill style */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/80 border border-black/[0.08] rounded-full px-5 py-1.5 backdrop-blur-md shadow-sm">
+          <nav className="hidden lg:flex items-center gap-1 bg-white/80 border border-black/[0.08] rounded-full px-5 py-1.5 backdrop-blur-md shadow-sm">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -80,7 +81,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <a
               href={APP_REDIRECT_URL}
               target="_blank"
@@ -101,7 +102,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 p-4 bg-white/95 backdrop-blur-xl border border-black/[0.08] rounded-2xl shadow-xl flex flex-col gap-2">
+          <div className="lg:hidden mt-3 p-4 bg-white/95 backdrop-blur-xl border border-black/[0.08] rounded-2xl shadow-xl flex flex-col gap-2">
             {navLinks.map((link) => (
               <a
                 key={link.label}
