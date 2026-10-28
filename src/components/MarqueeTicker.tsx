@@ -1,6 +1,10 @@
 import React from 'react';
 
-export const MarqueeTicker: React.FC = () => {
+interface MarqueeTickerProps {
+  isDark?: boolean;
+}
+
+export const MarqueeTicker: React.FC<MarqueeTickerProps> = ({ isDark = true }) => {
   const items1 = [
     'EXCALIDRAW SYSTEM DESIGN',
     'FIRST-CLASS NOTE EDITOR',
@@ -14,7 +18,7 @@ export const MarqueeTicker: React.FC = () => {
 
   const items2 = [
     'MICROSERVICES CANVAS',
-    'PAPER INK',
+    'OBSIDIAN SLATE',
     'COBALT BLOCK',
     'MINT SLAB',
     'ORANGE CRUSH',
@@ -24,13 +28,17 @@ export const MarqueeTicker: React.FC = () => {
   ];
 
   return (
-    <div className="py-5 sm:py-6 bg-[#FAF7F2] border-y border-black/[0.06] overflow-hidden space-y-2.5 select-none">
+    <div className={`py-4 sm:py-5 border-y overflow-hidden space-y-2 select-none transition-colors duration-300 ${
+      isDark ? 'bg-[#0B0D13] border-white/10' : 'bg-slate-100 border-black/10'
+    }`}>
       {/* Track 1: Forward */}
       <div className="flex w-fit animate-marquee whitespace-nowrap">
         {[...items1, ...items1, ...items1].map((text, idx) => (
-          <div key={idx} className="flex items-center mx-4 sm:mx-6 text-xs sm:text-sm font-mono tracking-wider font-semibold text-[#666055]">
-            <span className="hover:text-[#141414] transition-colors">{text}</span>
-            <span className="mx-4 text-[#F59E0B] font-black text-sm">✦</span>
+          <div key={idx} className={`flex items-center mx-4 sm:mx-6 text-xs sm:text-sm font-mono tracking-wider font-semibold ${
+            isDark ? 'text-slate-400' : 'text-slate-600'
+          }`}>
+            <span className={isDark ? 'hover:text-white' : 'hover:text-black'}>{text}</span>
+            <span className="mx-4 text-[#00F076] font-black text-sm">✦</span>
           </div>
         ))}
       </div>
@@ -38,9 +46,11 @@ export const MarqueeTicker: React.FC = () => {
       {/* Track 2: Reverse */}
       <div className="flex w-fit animate-marqueeReverse whitespace-nowrap opacity-85">
         {[...items2, ...items2, ...items2].map((text, idx) => (
-          <div key={idx} className="flex items-center mx-4 sm:mx-6 text-xs sm:text-sm font-mono tracking-wider font-semibold text-[#666055]">
-            <span className="hover:text-[#0F4C81] transition-colors">{text}</span>
-            <span className="mx-4 text-[#0F4C81] font-black text-sm">✦</span>
+          <div key={idx} className={`flex items-center mx-4 sm:mx-6 text-xs sm:text-sm font-mono tracking-wider font-semibold ${
+            isDark ? 'text-slate-400' : 'text-slate-600'
+          }`}>
+            <span className={isDark ? 'hover:text-[#00E5FF]' : 'hover:text-[#008060]'}>{text}</span>
+            <span className="mx-4 text-[#00E5FF] font-black text-sm">✦</span>
           </div>
         ))}
       </div>

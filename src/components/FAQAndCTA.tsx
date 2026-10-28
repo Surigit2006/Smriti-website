@@ -4,10 +4,11 @@ import { AppPalette, APP_REDIRECT_URL } from '../data/palettes';
 import { ThreeDCard } from './ThreeDCard';
 
 interface FAQAndCTAProps {
-  activePalette: AppPalette;
+  activePalette?: AppPalette;
+  isDark?: boolean;
 }
 
-export const FAQAndCTA: React.FC<FAQAndCTAProps> = () => {
+export const FAQAndCTA: React.FC<FAQAndCTAProps> = ({ isDark = true }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
@@ -38,17 +39,23 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = () => {
   ];
 
   return (
-    <section className="py-24 sm:py-32 relative bg-[#FAF7F2] border-t border-black/[0.06] overflow-hidden">
+    <section 
+      className={`py-24 sm:py-32 relative border-t transition-colors duration-500 overflow-hidden ${
+        isDark 
+          ? 'bg-[#0E1118] border-white/10 text-white' 
+          : 'bg-[#F8FAFC] border-slate-200 text-slate-900'
+      }`}
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* FAQ Header */}
         <div className="text-center mb-16">
-          <div className="font-mono text-xs text-[#0F4C81] font-bold uppercase tracking-widest mb-3">
+          <div className="font-mono text-xs text-[#00F076] font-bold uppercase tracking-widest mb-3">
             [ 07 // FREQUENTLY ASKED QUESTIONS ]
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-archivo font-black text-[#141414] tracking-tight uppercase">
+          <h2 className="text-4xl sm:text-5xl font-archivo font-black tracking-tight uppercase">
             EVERYTHING YOU NEED<br />
-            <span className="text-[#0F4C81]">TO KNOW ABOUT SMRITI.</span>
+            <span className="text-[#00F076]">TO KNOW ABOUT SMRITI.</span>
           </h2>
         </div>
 
@@ -59,24 +66,30 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = () => {
             return (
               <div
                 key={idx}
-                className="dovv-card bg-white p-0 rounded-2xl overflow-hidden border border-black/[0.07] shadow-xs"
+                className={`p-0 rounded-2xl overflow-hidden border transition-colors ${
+                  isDark ? 'bg-[#131722] border-white/10' : 'bg-white border-slate-200 shadow-xs'
+                }`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 text-[#141414] hover:text-[#0F4C81] transition-colors"
+                  className={`w-full p-6 text-left flex items-center justify-between gap-4 transition-colors ${
+                    isDark ? 'text-white hover:text-[#00F076]' : 'text-slate-900 hover:text-emerald-700'
+                  }`}
                 >
                   <span className="font-archivo text-lg sm:text-xl font-bold uppercase tracking-tight">
                     {faq.q}
                   </span>
                   {isOpen ? (
-                    <ChevronUp className="w-5 h-5 text-[#0F4C81] shrink-0" />
+                    <ChevronUp className="w-5 h-5 text-[#00F076] shrink-0" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-[#666055] shrink-0" />
+                    <ChevronDown className="w-5 h-5 text-slate-400 shrink-0" />
                   )}
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 text-sm text-[#666055] font-sans leading-relaxed border-t border-black/[0.06] pt-4">
+                  <div className={`px-6 pb-6 text-sm font-sans leading-relaxed border-t pt-4 ${
+                    isDark ? 'border-white/10 text-slate-300' : 'border-slate-100 text-slate-600'
+                  }`}>
                     {faq.a}
                   </div>
                 )}
@@ -85,24 +98,32 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = () => {
           })}
         </div>
 
-        {/* Final Monumental CTA Banner in Clean DOVV Framing */}
-        <ThreeDCard maxTilt={4}>
-          <div className="dovv-card bg-white p-8 sm:p-14 text-center rounded-3xl border border-black/[0.1] shadow-xl relative overflow-hidden">
+        {/* Final Monumental CTA Banner in Shopify Editions Obsidian Style */}
+        <ThreeDCard maxTilt={3}>
+          <div className={`p-8 sm:p-14 text-center rounded-3xl border shadow-2xl relative overflow-hidden ${
+            isDark 
+              ? 'bg-[#131722] border-white/10' 
+              : 'bg-white border-slate-200'
+          }`}>
             <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF7F2] border border-black/[0.06] text-[#141414] font-mono text-xs font-bold uppercase">
-                <span className="w-2 h-2 rounded-full bg-[#16c847] animate-pulse" />
+              <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border font-mono text-xs font-bold uppercase ${
+                isDark ? 'bg-[#0E1118] border-white/10 text-white' : 'bg-slate-100 border-slate-200 text-slate-900'
+              }`}>
+                <span className="w-2 h-2 rounded-full bg-[#00F076] animate-pulse" />
                 <span>Live on Web • Instant Zero-Config Access</span>
               </div>
 
-              <h3 className="text-4xl sm:text-6xl font-archivo font-black text-[#141414] tracking-tight leading-[0.92] uppercase">
+              <h3 className="text-4xl sm:text-6xl font-archivo font-black tracking-tight leading-[0.92] uppercase">
                 YOUR THOUGHTS<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#141414] via-[#0F4C81] to-[#D97706]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-[#00F076] to-[#00E5FF]">
                   DESERVE A BETTER SPACE.
                 </span>
               </h3>
 
-              <p className="text-base sm:text-lg text-[#666055] font-normal leading-relaxed">
-                Experience note-taking with clarity, Excalidraw system design, custom colorways, and zero friction. Available immediately in your browser.
+              <p className={`text-sm sm:text-base max-w-lg mx-auto font-sans leading-relaxed ${
+                isDark ? 'text-slate-400' : 'text-slate-600'
+              }`}>
+                Start writing in a clean, distraction-free environment with 162 colorways, Excalidraw system whiteboard, instant search, and complete local privacy.
               </p>
 
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -110,28 +131,31 @@ export const FAQAndCTA: React.FC<FAQAndCTAProps> = () => {
                   href={APP_REDIRECT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider text-white bg-[#141414] hover:bg-[#0F4C81] shadow-lg shadow-black/10 transition-all hover:scale-105"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#00F076] hover:bg-[#00d669] text-black font-archivo font-bold text-sm uppercase tracking-wider shadow-xl hover:shadow-[#00F076]/30 transition-all hover:scale-105"
                 >
-                  <span>Launch Smriti Notes</span>
+                  <span>Launch Smriti Notes Now</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
 
                 <a
-                  href="#excalidraw"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#141414] bg-[#FAF7F2] hover:bg-[#F0EAE1] border border-black/[0.08] transition-colors"
+                  href="#templates"
+                  className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border text-xs font-mono font-bold uppercase tracking-wider transition-all ${
+                    isDark ? 'bg-white/5 hover:bg-white/10 border-white/10 text-white' : 'bg-slate-100 hover:bg-slate-200 border-slate-300 text-slate-900'
+                  }`}
                 >
-                  <span>Explore Excalidraw Canvas</span>
+                  <span>Explore Templates</span>
                 </a>
               </div>
 
-              <div className="pt-4 flex items-center justify-center gap-4 text-xs font-mono text-[#666055]">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-[#16c847]" /> 100% Private & Local
-                </span>
-                <span>•</span>
-                <span>No sign-up required</span>
+              <div className="pt-2 flex items-center justify-center gap-2 text-xs font-mono text-slate-400">
+                <ShieldCheck className="w-4 h-4 text-[#00F076]" />
+                <span>Runs entirely client-side. Zero trackers. Free forever.</span>
               </div>
             </div>
+
+            {/* Glowing Tech Mesh Gradients */}
+            <div className="pointer-events-none absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[#00F076]/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-[#00E5FF]/10 blur-3xl" />
           </div>
         </ThreeDCard>
       </div>

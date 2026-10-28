@@ -6,7 +6,7 @@ interface CurvedDomeProps {
 }
 
 export const CurvedDome: React.FC<CurvedDomeProps> = ({ 
-  fill = '#F5F0E8',
+  fill = '#0E1118',
   className = '' 
 }) => {
   return (

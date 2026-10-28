@@ -4,30 +4,25 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        beige: {
-          50: '#FAF7F2',
-          100: '#F5F0E8', // primary warm beige paper
-          200: '#EBE4D8',
-          300: '#DDD4C4',
-          400: '#C7BBA7',
-          surface: '#FFFFFF',
-          card: '#FBF9F5',
-        },
-        ink: {
-          900: '#111111',
-          800: '#1A1A1A',
-          700: '#262626',
-          muted: '#6B655A',
-        },
-        dovv: {
-          accent: '#ed4a1c', // DOVV signature vermillion
-          lime: '#16c847',
-          sun: '#f59e0b',    // Indian artwork solar halo
-          peacock: '#104f8b',// Indian artwork peacock feather blue
-          lotus: '#e87a90',  // Indian artwork lotus pink
+        shopify: {
+          dark: '#08090D',
+          darkSurface: '#0E1118',
+          darkCard: '#131722',
+          darkBorder: 'rgba(255, 255, 255, 0.08)',
+          light: '#F8FAFC',
+          lightSurface: '#FFFFFF',
+          lightCard: '#FFFFFF',
+          lightBorder: 'rgba(0, 0, 0, 0.08)',
+          emerald: '#00F076',
+          cyan: '#00E5FF',
+          violet: '#7C3AED',
+          gold: '#F59E0B',
+          peacock: '#0F4C81',
+          rose: '#E87A90',
         }
       },
       fontFamily: {
@@ -35,12 +30,6 @@ export default {
         archivo: ['"Archivo"', '"Anton"', 'Impact', 'sans-serif'],
         mono: ['"DM Mono"', 'monospace'],
         sans: ['"Inter"', 'system-ui', 'sans-serif'],
-        handwriting: ['"Caveat"', 'cursive'],
-      },
-      boxShadow: {
-        'clean-card': '0 0 0 1px rgba(0,0,0,0.06), 0 10px 35px -10px rgba(0,0,0,0.05)',
-        'clean-hover': '0 0 0 1px rgba(0,0,0,0.12), 0 20px 45px -12px rgba(0,0,0,0.1)',
-        'dovv-pill': '0 0 0 1px rgba(0,0,0,0.08), 0 6px 20px -4px rgba(0,0,0,0.08)',
       },
       keyframes: {
         marquee: {

@@ -3,16 +3,19 @@ import { ArrowUp, ExternalLink } from 'lucide-react';
 import { AppPalette, APP_REDIRECT_URL, CREATOR_NAME } from '../data/palettes';
 
 interface FooterProps {
-  activePalette: AppPalette;
+  activePalette?: AppPalette;
+  isDark?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = () => {
+export const Footer: React.FC<FooterProps> = ({ isDark = true }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-[#141414] text-[#A8A29E] py-16 text-xs sm:text-sm relative overflow-hidden select-none">
+    <footer className={`py-16 text-xs sm:text-sm relative overflow-hidden select-none border-t transition-colors ${
+      isDark ? 'bg-[#08090D] text-slate-400 border-white/10' : 'bg-slate-900 text-slate-300 border-slate-800'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 pb-16 border-b border-white/10">
           {/* Brand Info */}
@@ -30,7 +33,7 @@ export const Footer: React.FC<FooterProps> = () => {
               </span>
             </div>
 
-            <p className="text-[#A8A29E] text-xs sm:text-sm leading-relaxed max-w-sm font-sans">
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm font-sans">
               A distraction-free notebook for writing, Excalidraw system design, planning, and connecting ideas — designed around the way you think with zero friction.
             </p>
 
@@ -39,7 +42,7 @@ export const Footer: React.FC<FooterProps> = () => {
                 href={APP_REDIRECT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#141414] hover:bg-[#FAF7F2] font-archivo font-bold text-xs uppercase tracking-wider shadow-sm transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#00F076] hover:bg-[#00d669] text-black font-archivo font-bold text-xs uppercase tracking-wider shadow-md transition-all hover:scale-105"
               >
                 <span>Launch app.smritinotes.site</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -54,27 +57,27 @@ export const Footer: React.FC<FooterProps> = () => {
             </h4>
             <ul className="space-y-2.5 text-xs font-mono">
               <li>
-                <a href="#editor" className="hover:text-white transition-colors">
+                <a href="#editor" className="hover:text-[#00F076] transition-colors">
                   First-Class Editor
                 </a>
               </li>
               <li>
-                <a href="#excalidraw" className="hover:text-white transition-colors">
+                <a href="#excalidraw" className="hover:text-[#00F076] transition-colors">
                   Excalidraw Whiteboard
                 </a>
               </li>
               <li>
-                <a href="#palettes" className="hover:text-white transition-colors">
+                <a href="#palettes" className="hover:text-[#00F076] transition-colors">
                   162 Color Palettes
                 </a>
               </li>
               <li>
-                <a href="#organization" className="hover:text-white transition-colors">
+                <a href="#organization" className="hover:text-[#00F076] transition-colors">
                   Folders & Pinned Notes
                 </a>
               </li>
               <li>
-                <a href="#organization" className="hover:text-white transition-colors">
+                <a href="#organization" className="hover:text-[#00F076] transition-colors">
                   Command Bar (⌘K)
                 </a>
               </li>
@@ -88,29 +91,29 @@ export const Footer: React.FC<FooterProps> = () => {
             </h4>
             <ul className="space-y-2.5 text-xs font-mono">
               <li>
-                <a href="#autocomplete" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <a href="#autocomplete" className="hover:text-[#00F076] transition-colors flex items-center gap-1.5">
                   <span>Inline Autocomplete</span>
-                  <span className="text-[9px] px-1.5 py-0.2 bg-[#0F4C81] text-white rounded">New</span>
+                  <span className="text-[9px] px-1.5 py-0.2 bg-[#00F076]/20 text-[#00F076] rounded font-bold">New</span>
                 </a>
               </li>
               <li>
-                <a href="#templates" className="hover:text-white transition-colors flex items-center gap-1.5">
+                <a href="#templates" className="hover:text-[#00F076] transition-colors flex items-center gap-1.5">
                   <span>Notebook Templates</span>
-                  <span className="text-[9px] px-1.5 py-0.2 bg-white/10 text-white rounded">Soon</span>
+                  <span className="text-[9px] px-1.5 py-0.2 bg-white/10 text-white rounded font-bold">Soon</span>
                 </a>
               </li>
               <li>
-                <a href="#connected-notes" className="hover:text-white transition-colors">
+                <a href="#connected-notes" className="hover:text-[#00F076] transition-colors">
                   Connected Sticky Canvas
                 </a>
               </li>
               <li>
-                <a href="#roadmap" className="hover:text-white transition-colors">
+                <a href="#roadmap" className="hover:text-[#00F076] transition-colors">
                   Cloud Multi-Device Sync
                 </a>
               </li>
               <li>
-                <a href="#excalidraw" className="hover:text-white transition-colors">
+                <a href="#excalidraw" className="hover:text-[#00F076] transition-colors">
                   System Design Templates
                 </a>
               </li>
@@ -128,24 +131,24 @@ export const Footer: React.FC<FooterProps> = () => {
                   href={APP_REDIRECT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:underline font-bold flex items-center gap-1"
+                  className="text-white hover:text-[#00F076] font-bold flex items-center gap-1"
                 >
                   <span>app.smritinotes.site</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </li>
               <li>
-                <a href="#excalidraw" className="text-[#A8A29E] hover:text-white transition-colors">
+                <a href="#excalidraw" className="hover:text-[#00F076] transition-colors">
                   System Architecture Canvas
                 </a>
               </li>
               <li>
-                <a href="#templates" className="text-[#A8A29E] hover:text-white transition-colors">
+                <a href="#templates" className="hover:text-[#00F076] transition-colors">
                   Explore Templates
                 </a>
               </li>
               <li>
-                <a href="#autocomplete" className="text-[#A8A29E] hover:text-white transition-colors">
+                <a href="#autocomplete" className="hover:text-[#00F076] transition-colors">
                   Test Autocomplete Demo
                 </a>
               </li>
@@ -155,7 +158,7 @@ export const Footer: React.FC<FooterProps> = () => {
 
         {/* Big Wordmark & Scroll to Top */}
         <div className="pt-12 pb-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="font-anton text-[12vw] sm:text-[9vw] lg:text-[6.5rem] text-white/[0.07] leading-none uppercase select-none tracking-tight">
+          <div className="font-anton text-[12vw] sm:text-[9vw] lg:text-[6.5rem] text-white/[0.08] leading-none uppercase select-none tracking-tight">
             SMRITI NOTES
           </div>
 
@@ -164,17 +167,17 @@ export const Footer: React.FC<FooterProps> = () => {
             className="px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs uppercase font-mono tracking-wider flex items-center gap-2 text-white transition-colors cursor-pointer shrink-0"
           >
             <span>Back to top</span>
-            <ArrowUp className="w-3.5 h-3.5 text-[#F59E0B]" />
+            <ArrowUp className="w-3.5 h-3.5 text-[#00F076]" />
           </button>
         </div>
 
-        {/* Copyright & ONLY Attribution Line */}
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#78716C]">
+        {/* Copyright & Strictly ONE Attribution Line */}
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
           <div>
             © {new Date().getFullYear()} Smriti Notes. Created by <span className="text-white font-semibold">{CREATOR_NAME}</span>.
           </div>
           <div className="flex items-center gap-4">
-            <a href={APP_REDIRECT_URL} target="_blank" rel="noopener noreferrer" className="text-white hover:underline">
+            <a href={APP_REDIRECT_URL} target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#00F076]">
               app.smritinotes.site
             </a>
             <span>•</span>

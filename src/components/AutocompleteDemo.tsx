@@ -65,7 +65,11 @@ const SLASH_COMMANDS = [
   { trigger: '/table', label: 'Data Table', desc: 'Structured columns and rows', icon: Table },
 ];
 
-export const AutocompleteDemo: React.FC = () => {
+interface AutocompleteDemoProps {
+  isDark?: boolean;
+}
+
+export const AutocompleteDemo: React.FC<AutocompleteDemoProps> = ({ isDark = true }) => {
   const [selectedScenarioIndex, setSelectedScenarioIndex] = useState(0);
   const currentScenario = SCENARIOS[selectedScenarioIndex];
   
@@ -101,28 +105,62 @@ export const AutocompleteDemo: React.FC = () => {
     }
   };
 
+  const insertSlashCommand = (cmd: typeof SLASH_COMMANDS[0]) => {
+    if (cmd.trigger === '/h1') {
+      setText((prev) => prev + '\n\n# New Strategic Architecture\n');
+    } else if (cmd.trigger === '/todo') {
+      setText((prev) => prev + '\n- [ ] Design high-throughput vector store\n- [ ] Verify Excalidraw zero-lag canvas\n');
+    } else if (cmd.trigger === '/code') {
+      setText((prev) => prev + '\n```rust\nfn compute_hash(seed: &[u8]) -> [u8; 32] {\n    blake3::hash(seed).into()\n}\n```\n');
+    } else if (cmd.trigger === '/quote') {
+      setText((prev) => prev + '\n> "Simplicity is prerequisite for reliability." — Edsger W. Dijkstra\n');
+    } else if (cmd.trigger === '/table') {
+      setText((prev) => prev + '\n| Service | Latency | Status |\n|---|---|---|\n| Edge Cache | 1.2ms | Operational |\n| Primary DB | 4.8ms | Operational |\n');
+    }
+    setShowSlashMenu(false);
+  };
+
   return (
-    <section id="autocomplete" className="py-24 sm:py-32 relative bg-[#F5F0E8] border-t border-black/[0.06] overflow-hidden">
+    <section 
+      id="autocomplete" 
+      className={`py-24 sm:py-32 relative border-t transition-colors duration-500 overflow-hidden ${
+        isDark 
+          ? 'bg-[#0E1118] border-white/10 text-white' 
+          : 'bg-[#F8FAFC] border-slate-200 text-slate-900'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* DOVV Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-8 border-b border-black/[0.07]">
+        {/* Shopify Editions Section Header */}
+        <div className={`flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-8 border-b ${
+          isDark ? 'border-white/10' : 'border-slate-200'
+        }`}>
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-mono text-xs text-[#0F4C81] font-bold uppercase tracking-widest">
+              <span className={`px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider border ${
+                isDark 
+                  ? 'bg-[#00F076]/10 text-[#00F076] border-[#00F076]/20' 
+                  : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+              }`}>
                 [ UPCOMING // INTELLIGENT AUTOCOMPLETE ]
               </span>
-              <span className="dovv-chip text-[#F59E0B] text-xs py-0.5 font-bold">
+              <span className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold ${
+                isDark ? 'bg-white/10 text-white' : 'bg-slate-200 text-slate-800'
+              }`}>
                 Coming Soon
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl font-archivo font-black text-[#141414] tracking-tight leading-[0.95] uppercase">
+            <h2 className="text-4xl sm:text-6xl font-archivo font-black tracking-tight leading-[0.95] uppercase">
               THOUGHT-SPEED WRITING.<br />
-              <span className="text-[#0F4C81]">INLINE AUTOCOMPLETE & SLASH COMMANDS.</span>
+              <span className="text-[#00F076]">INLINE AUTOCOMPLETE & SLASH COMMANDS.</span>
             </h2>
 
-            <p className="mt-4 text-base sm:text-lg text-[#666055] leading-relaxed max-w-2xl font-normal">
-              Type naturally and let Smriti anticipate your next phrase, code block, or markdown structure. Press <kbd className="px-2 py-0.5 rounded bg-white border border-black/10 font-mono text-xs font-bold text-[#141414] shadow-xs">Tab ⇥</kbd> to complete thoughts instantly without breaking creative momentum.
+            <p className={`mt-4 text-base sm:text-lg leading-relaxed max-w-2xl font-normal ${
+              isDark ? 'text-slate-400' : 'text-slate-600'
+            }`}>
+              Type naturally and let Smriti anticipate your next sentence, code snippet, or markdown block. Press <kbd className={`px-2 py-0.5 rounded font-mono text-xs font-bold shadow-xs ${
+                isDark ? 'bg-white/10 border border-white/20 text-white' : 'bg-white border border-slate-300 text-slate-900'
+              }`}>Tab ⇥</kbd> to accept completions instantly without breaking flow.
             </p>
           </div>
 
@@ -131,7 +169,7 @@ export const AutocompleteDemo: React.FC = () => {
               href={APP_REDIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#141414] hover:bg-[#0F4C81] text-white font-archivo font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#00F076] hover:bg-[#00d669] text-black font-archivo font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-[#00F076]/20 transition-all hover:scale-105"
             >
               <span>Try Live in Smriti</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -147,10 +185,14 @@ export const AutocompleteDemo: React.FC = () => {
               <button
                 key={scenario.id}
                 onClick={() => setSelectedScenarioIndex(idx)}
-                className={`px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all whitespace-nowrap ${
+                className={`px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all whitespace-nowrap border ${
                   selectedScenarioIndex === idx
-                    ? 'bg-[#141414] text-white shadow-sm'
-                    : 'bg-white text-[#666055] hover:text-[#141414] border border-black/[0.06]'
+                    ? isDark
+                      ? 'bg-white text-black border-white shadow-md'
+                      : 'bg-slate-900 text-white border-slate-900 shadow-md'
+                    : isDark
+                      ? 'bg-[#131722] text-slate-400 hover:text-white border-white/10'
+                      : 'bg-white text-slate-600 hover:text-slate-900 border-slate-200'
                 }`}
               >
                 {scenario.label}
@@ -159,13 +201,15 @@ export const AutocompleteDemo: React.FC = () => {
           </div>
 
           {/* Mode Switcher */}
-          <div className="flex items-center gap-2 bg-white p-1 rounded-full border border-black/[0.08] shadow-xs shrink-0 self-start md:self-auto">
+          <div className={`flex items-center gap-2 p-1 rounded-full border shadow-xs shrink-0 self-start md:self-auto ${
+            isDark ? 'bg-[#131722] border-white/10' : 'bg-white border-slate-200'
+          }`}>
             <button
               onClick={() => { setActiveTab('autocomplete'); setShowSlashMenu(false); }}
               className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold transition-all ${
                 activeTab === 'autocomplete'
-                  ? 'bg-[#0F4C81] text-white font-bold'
-                  : 'text-[#666055] hover:text-[#141414]'
+                  ? 'bg-[#00F076] text-black font-bold'
+                  : isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               Inline Tab ⇥ Ghost
@@ -174,8 +218,8 @@ export const AutocompleteDemo: React.FC = () => {
               onClick={() => { setActiveTab('slash'); setShowSlashMenu(true); }}
               className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold transition-all ${
                 activeTab === 'slash'
-                  ? 'bg-[#0F4C81] text-white font-bold'
-                  : 'text-[#666055] hover:text-[#141414]'
+                  ? 'bg-[#00F076] text-black font-bold'
+                  : isDark ? 'text-slate-400 hover:text-white' : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               Slash (/) Commands
@@ -184,102 +228,100 @@ export const AutocompleteDemo: React.FC = () => {
         </div>
 
         {/* Interactive 3D Editor Canvas */}
-        <ThreeDCard maxTilt={3} className="w-full">
-          <div className="dovv-card bg-white p-6 sm:p-10 rounded-3xl border border-black/[0.08] shadow-xl relative overflow-hidden">
-            {/* Top Bar of the Interactive Autocomplete Console */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-6 border-b border-black/[0.06] text-xs font-mono text-[#666055]">
+        <ThreeDCard maxTilt={2} className="w-full">
+          <div className={`p-6 sm:p-10 rounded-3xl border shadow-2xl relative overflow-hidden transition-colors ${
+            isDark 
+              ? 'bg-[#131722] border-white/10 text-white' 
+              : 'bg-white border-slate-200 text-slate-900'
+          }`}>
+            {/* Top Bar */}
+            <div className={`flex flex-wrap items-center justify-between gap-3 pb-4 mb-6 border-b text-xs font-mono ${
+              isDark ? 'border-white/10 text-slate-400' : 'border-slate-200 text-slate-500'
+            }`}>
               <div className="flex items-center gap-3">
                 <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#E87A90]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#16c847]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#00F076]" />
                 </div>
-                <span className="font-bold text-[#141414]">Smart Autocomplete Engine</span>
-                <span className="text-black/30">•</span>
-                <span className="text-[#0F4C81]">Local semantic prediction</span>
+                <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Smart Autocomplete Engine</span>
+                <span className="opacity-30">•</span>
+                <span className="text-[#00F076] font-semibold">Local semantic prediction</span>
               </div>
 
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleReset}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/5 hover:bg-black/10 text-xs font-mono text-[#141414] transition-colors"
-                  title="Reset demo"
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono border transition-all ${
+                    isDark 
+                      ? 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10' 
+                      : 'bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200'
+                  }`}
                 >
                   <RotateCcw className="w-3 h-3" />
-                  <span>Reset</span>
+                  <span>Reset Demo</span>
                 </button>
-                <span className="px-2 py-0.5 rounded bg-[#16c847]/10 text-[#16c847] font-bold text-[11px]">
-                  Zero Latency
-                </span>
               </div>
             </div>
 
-            {/* The Text & Ghost Container */}
-            <div 
-              className="relative min-h-[220px] sm:min-h-[260px] font-sans text-base sm:text-lg leading-relaxed text-[#141414] whitespace-pre-wrap select-text cursor-text focus:outline-none"
-              tabIndex={0}
-              onKeyDown={handleKeyDown}
-            >
-              <span>{text}</span>
-
-              {/* Ghost Translucent Autocomplete Suggestion */}
-              {!isCompleted && ghost && (
-                <span className="text-[#0F4C81]/45 italic font-sans animate-pulse">
-                  {ghost}
-                </span>
-              )}
-
-              {/* Floating Tab Completion Indicator */}
-              <AnimatePresence>
+            {/* Interactive Typing & Completion Area */}
+            <div className="relative min-h-[260px] font-mono text-sm sm:text-base leading-relaxed">
+              <div className="whitespace-pre-wrap select-text">
+                <span className={isDark ? 'text-slate-100' : 'text-slate-900'}>{text}</span>
+                
+                {/* Ghost Text (Tab to Complete) */}
                 {!isCompleted && ghost && (
+                  <span className={`inline font-semibold transition-opacity animate-pulse ${
+                    isDark ? 'text-[#00F076] bg-[#00F076]/10 px-1 rounded' : 'text-emerald-600 bg-emerald-50 px-1 rounded'
+                  }`}>
+                    {ghost}
+                    <span className={`ml-2 inline-flex items-center gap-1 text-[11px] font-sans font-bold px-2 py-0.5 rounded border align-middle shadow-xs ${
+                      isDark ? 'bg-black/60 border-white/20 text-white' : 'bg-white border-slate-300 text-slate-900'
+                    }`}>
+                      Tab ⇥
+                    </span>
+                  </span>
+                )}
+              </div>
+
+              {/* Slash Command Popover Menu */}
+              <AnimatePresence>
+                {showSlashMenu && (
                   <motion.div
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    className="inline-flex items-center gap-2 ml-2 mt-2 px-3 py-1.5 rounded-full bg-[#0F4C81] text-white font-mono text-xs shadow-md cursor-pointer hover:bg-[#141414] transition-colors"
-                    onClick={handleComplete}
+                    exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                    className={`absolute top-16 left-4 sm:left-12 z-30 w-72 p-2 rounded-2xl shadow-2xl border ${
+                      isDark 
+                        ? 'bg-[#0E1118] border-white/15 text-white' 
+                        : 'bg-white border-slate-200 text-slate-900'
+                    }`}
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
-                    <span>Press Tab ⇥ or click to complete</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Slash Command Dropdown Menu Simulation */}
-              <AnimatePresence>
-                {(showSlashMenu || activeTab === 'slash') && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="absolute left-4 top-24 z-30 w-72 bg-white rounded-2xl border border-black/10 shadow-2xl p-2 font-sans"
-                  >
-                    <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-[#666055] font-bold border-b border-black/5">
-                      Commands matching "/"
+                    <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-wider text-slate-400 border-b border-white/10">
+                      Quick Insert Commands
                     </div>
-                    <div className="space-y-1 mt-1">
+                    <div className="py-1">
                       {SLASH_COMMANDS.map((cmd) => {
                         const Icon = cmd.icon;
                         return (
-                          <div
+                          <button
                             key={cmd.trigger}
-                            onClick={() => {
-                              setText((prev) => prev + `\n${cmd.trigger} `);
-                              setShowSlashMenu(false);
-                            }}
-                            className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#FAF7F2] cursor-pointer transition-colors group"
+                            onClick={() => insertSlashCommand(cmd)}
+                            className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors ${
+                              isDark ? 'hover:bg-white/10 text-left' : 'hover:bg-slate-100 text-left'
+                            }`}
                           >
-                            <div className="w-7 h-7 rounded-lg bg-black/5 flex items-center justify-center text-[#141414] group-hover:bg-[#0F4C81] group-hover:text-white transition-colors">
-                              <Icon className="w-3.5 h-3.5" />
+                            <div className="flex items-center gap-2.5">
+                              <div className={`p-1.5 rounded-lg ${isDark ? 'bg-white/10 text-[#00F076]' : 'bg-slate-100 text-emerald-600'}`}>
+                                <Icon className="w-3.5 h-3.5" />
+                              </div>
+                              <div>
+                                <div className="font-bold">{cmd.label}</div>
+                                <div className="text-[10px] text-slate-400">{cmd.desc}</div>
+                              </div>
                             </div>
-                            <div className="flex-1">
-                              <div className="text-xs font-bold text-[#141414]">{cmd.label}</div>
-                              <div className="text-[10px] text-[#666055]">{cmd.desc}</div>
-                            </div>
-                            <span className="text-[10px] font-mono text-[#666055] group-hover:text-[#0F4C81]">
-                              {cmd.trigger}
-                            </span>
-                          </div>
+                            <span className="font-mono text-[10px] text-slate-400">{cmd.trigger}</span>
+                          </button>
                         );
                       })}
                     </div>
@@ -288,31 +330,40 @@ export const AutocompleteDemo: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            {/* Bottom Interactive Guidance Bar */}
-            <div className="pt-6 mt-6 border-t border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#666055]">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#16c847]" />
-                {isCompleted ? (
-                  <span className="text-[#16c847] font-bold flex items-center gap-1">
-                    <Check className="w-3.5 h-3.5" /> Suggestion accepted & inserted!
-                  </span>
-                ) : (
-                  <span>Type anywhere or press Tab ⇥ to accept inline suggestions</span>
-                )}
-              </div>
-
+            {/* Bottom Keyboard Action Callout */}
+            <div className={`mt-8 pt-4 border-t flex flex-wrap items-center justify-between gap-4 text-xs font-mono ${
+              isDark ? 'border-white/10 text-slate-400' : 'border-slate-200 text-slate-500'
+            }`}>
               <div className="flex items-center gap-3">
                 <button
                   onClick={handleComplete}
                   disabled={isCompleted}
-                  className={`px-4 py-2 rounded-full font-bold text-xs font-mono uppercase tracking-wider transition-all ${
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold transition-all ${
                     isCompleted
-                      ? 'bg-black/5 text-black/30 cursor-not-allowed'
-                      : 'bg-[#141414] hover:bg-[#0F4C81] text-white shadow-xs'
+                      ? 'bg-slate-500/20 text-slate-400 cursor-not-allowed'
+                      : 'bg-[#00F076] hover:bg-[#00d669] text-black shadow-md hover:scale-105 cursor-pointer'
                   }`}
                 >
-                  Accept Suggestion ⇥
+                  <Zap className="w-3.5 h-3.5" />
+                  <span>{isCompleted ? 'Thought Completed' : 'Simulate Tab ⇥ Completion'}</span>
                 </button>
+
+                <button
+                  onClick={() => setShowSlashMenu(!showSlashMenu)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border transition-all ${
+                    isDark 
+                      ? 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10' 
+                      : 'bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200'
+                  }`}
+                >
+                  <Command className="w-3.5 h-3.5 text-[#00F076]" />
+                  <span>Insert / Command</span>
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2 text-[11px]">
+                <span className="w-2 h-2 rounded-full bg-[#00F076]" />
+                <span>Zero cloud latency • 100% On-Device AI</span>
               </div>
             </div>
           </div>

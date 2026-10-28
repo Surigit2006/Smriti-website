@@ -13,7 +13,11 @@ import {
 import { APP_REDIRECT_URL } from '../data/palettes';
 import { ThreeDCard } from './ThreeDCard';
 
-export const RoadmapSection: React.FC = () => {
+interface RoadmapSectionProps {
+  isDark?: boolean;
+}
+
+export const RoadmapSection: React.FC<RoadmapSectionProps> = ({ isDark = true }) => {
   const [votes, setVotes] = useState<Record<string, number>>({
     'autocomplete': 1890,
     'cloud-sync': 1420,
@@ -36,7 +40,7 @@ export const RoadmapSection: React.FC = () => {
       title: 'Intelligent Autocomplete & Slash Commands',
       subtitle: 'Inline thought completion, Tab ⇥ key expansion, and instant / quick actions for headings, tasks, tables, and code.',
       stage: 'In Active Development',
-      badgeColor: 'text-[#0F4C81] bg-[#0F4C81]/10 border-[#0F4C81]/20',
+      badgeColor: 'text-[#00F076] bg-[#00F076]/10 border-[#00F076]/20',
       icon: Terminal,
       bullets: [
         'Semantic inline ghost text with single-keystroke Tab completion',
@@ -48,10 +52,10 @@ export const RoadmapSection: React.FC = () => {
     {
       id: 'templates',
       num: '02',
-      title: 'Ready-to-Use Templates',
+      title: 'Ready-to-Use Notebook Templates',
       subtitle: 'Build timetables, daily planners, study schedules, project trackers, and engineering decision records.',
       stage: 'Prototyping',
-      badgeColor: 'text-[#D97706] bg-[#F59E0B]/10 border-[#F59E0B]/20',
+      badgeColor: 'text-[#00E5FF] bg-[#00E5FF]/10 border-[#00E5FF]/20',
       icon: LayoutTemplate,
       bullets: [
         'Cornell study notes, spaced repetition flashcards, and timetables',
@@ -66,7 +70,7 @@ export const RoadmapSection: React.FC = () => {
       title: 'Cloud Multi-Device Sync',
       subtitle: 'Access your notes seamlessly across desktop, phone, and tablet without compromising local-first speed.',
       stage: 'In Development',
-      badgeColor: 'text-[#0F4C81] bg-[#0F4C81]/10 border-[#0F4C81]/20',
+      badgeColor: 'text-violet-400 bg-violet-400/10 border-violet-400/20',
       icon: Cloud,
       bullets: [
         'End-to-end encrypted synchronization protocol',
@@ -78,17 +82,17 @@ export const RoadmapSection: React.FC = () => {
     {
       id: 'sketching',
       num: '04',
-      title: 'Sketching & Freehand Drawing',
+      title: 'Excalidraw Native Stylus Expansion',
       subtitle: 'Draw diagrams, sketch concepts, and combine handwritten stylus thinking with your markdown notes.',
       stage: 'In Research',
-      badgeColor: 'text-[#E87A90] bg-[#E87A90]/10 border-[#E87A90]/20',
+      badgeColor: 'text-amber-400 bg-amber-400/10 border-amber-400/20',
       icon: PenTool,
       bullets: [
         'Infinite canvas vector engine with zero stylus lag',
         'Pressure sensitivity & tilt detection for digital pencils',
         'Seamless integration of hand-drawn diagrams into markdown docs'
       ],
-      demoLink: null
+      demoLink: '#excalidraw'
     },
     {
       id: 'ai',
@@ -96,7 +100,7 @@ export const RoadmapSection: React.FC = () => {
       title: 'AI-Powered Productivity',
       subtitle: 'Summarize lengthy notes, generate study materials, and turn fragmented thoughts into actionable insights.',
       stage: 'Exploration',
-      badgeColor: 'text-[#1B4332] bg-[#1B4332]/10 border-[#1B4332]/20',
+      badgeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
       icon: Bot,
       bullets: [
         'Sub-millisecond note summarization and action items extraction',
@@ -108,27 +112,44 @@ export const RoadmapSection: React.FC = () => {
   ];
 
   return (
-    <section id="roadmap" className="py-24 sm:py-32 relative bg-[#F5F0E8] border-t border-black/[0.06] overflow-hidden">
+    <section 
+      id="roadmap" 
+      className={`py-24 sm:py-32 relative border-t transition-colors duration-500 overflow-hidden ${
+        isDark 
+          ? 'bg-[#0E1118] border-white/10 text-white' 
+          : 'bg-[#F8FAFC] border-slate-200 text-slate-900'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* DOVV Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-8 border-b border-black/[0.07]">
+        {/* Shopify Editions Section Header */}
+        <div className={`flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16 pb-8 border-b ${
+          isDark ? 'border-white/10' : 'border-slate-200'
+        }`}>
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-mono text-xs text-[#0F4C81] font-bold uppercase tracking-widest">
+              <span className={`px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider border ${
+                isDark 
+                  ? 'bg-[#00F076]/10 text-[#00F076] border-[#00F076]/20' 
+                  : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+              }`}>
                 [ ROADMAP // THE FUTURE OF SMRITI ]
               </span>
-              <span className="dovv-chip text-[#F59E0B] text-xs py-0.5 font-bold">
-                Upcoming Milestones
+              <span className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold ${
+                isDark ? 'bg-white/10 text-white' : 'bg-slate-200 text-slate-800'
+              }`}>
+                Community Voted
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-6xl font-archivo font-black text-[#141414] tracking-tight leading-[0.95] uppercase">
-              COMING TO SMRITI.<br />
-              <span className="text-[#0F4C81]">MORE THAN A PLACE TO TAKE NOTES.</span>
+            <h2 className="text-4xl sm:text-6xl font-archivo font-black tracking-tight leading-[0.95] uppercase">
+              THE WORKSPACE ROADMAP.<br />
+              <span className="text-[#00F076]">SHAPED BY COGNITIVE FLOW.</span>
             </h2>
 
-            <p className="mt-4 text-base sm:text-lg text-[#666055] leading-relaxed max-w-2xl font-normal">
-              Intelligent autocomplete. Connected sticky notes. Ready-made planners. Freehand sketching. Your thoughts, amplified.
+            <p className={`mt-4 text-base sm:text-lg leading-relaxed max-w-2xl font-normal ${
+              isDark ? 'text-slate-400' : 'text-slate-600'
+            }`}>
+              Vote on the next features for Smriti. We build with radical transparency, putting local speed, privacy, and architectural visual clarity first.
             </p>
           </div>
 
@@ -137,7 +158,7 @@ export const RoadmapSection: React.FC = () => {
               href={APP_REDIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#141414] hover:bg-[#0F4C81] text-white font-archivo font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#00F076] hover:bg-[#00d669] text-black font-archivo font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-[#00F076]/20 transition-all hover:scale-105"
             >
               <span>Launch Live App</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -146,71 +167,80 @@ export const RoadmapSection: React.FC = () => {
         </div>
 
         {/* Roadmap Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {roadmapItems.map((item) => {
             const Icon = item.icon;
-            const voted = hasVoted[item.id];
+            const userVoted = hasVoted[item.id];
             return (
-              <ThreeDCard key={item.id} maxTilt={4}>
-                <div className="dovv-card bg-white p-6 sm:p-8 rounded-3xl border border-black/[0.08] shadow-md h-full flex flex-col justify-between">
+              <ThreeDCard key={item.id} maxTilt={3}>
+                <div className={`p-6 sm:p-8 rounded-3xl border shadow-xl h-full flex flex-col justify-between transition-colors ${
+                  isDark ? 'bg-[#131722] border-white/10 hover:border-white/20' : 'bg-white border-slate-200 hover:border-slate-300'
+                }`}>
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="font-mono text-xs font-bold text-[#666055]">
-                        {item.num} // UPCOMING
+                    {/* Top Row: Number & Status Badge */}
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className="font-mono text-xs text-slate-500 font-bold">
+                        {item.num} // ROADMAP
                       </span>
-                      <span className={`px-2.5 py-1 rounded-full text-[11px] font-mono border font-semibold ${item.badgeColor}`}>
+                      <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold border ${item.badgeColor}`}>
                         {item.stage}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-black/[0.06] flex items-center justify-center text-[#141414]">
-                        <Icon className="w-5 h-5 text-[#0F4C81]" />
+                    {/* Title & Icon */}
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className={`p-2.5 rounded-xl shrink-0 ${isDark ? 'bg-white/5 text-[#00F076]' : 'bg-slate-100 text-emerald-600'}`}>
+                        <Icon className="w-5 h-5" />
                       </div>
-                      <h3 className="font-archivo text-xl font-bold uppercase text-[#141414] leading-snug">
+                      <h3 className="font-archivo text-xl font-bold uppercase leading-tight">
                         {item.title}
                       </h3>
                     </div>
 
-                    <p className="text-xs sm:text-sm font-sans text-[#666055] leading-relaxed mb-6">
+                    <p className={`text-xs sm:text-sm leading-relaxed mb-6 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                       {item.subtitle}
                     </p>
 
-                    <ul className="space-y-2 mb-8">
+                    {/* Bullet Highlights */}
+                    <ul className="space-y-2 mb-6">
                       {item.bullets.map((b, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-xs font-mono text-[#141414]">
-                          <span className="text-[#0F4C81] font-bold">✦</span>
+                        <li key={i} className={`flex items-start gap-2 text-xs font-mono leading-normal ${
+                          isDark ? 'text-slate-300' : 'text-slate-600'
+                        }`}>
+                          <span className="text-[#00F076] font-bold">›</span>
                           <span>{b}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* Vote and Demo Links */}
-                  <div className="pt-4 border-t border-black/[0.06] flex items-center justify-between gap-2">
+                  {/* Bottom Action: Vote & Demo */}
+                  <div className={`pt-4 border-t flex items-center justify-between gap-3 ${
+                    isDark ? 'border-white/10' : 'border-slate-100'
+                  }`}>
                     <button
                       onClick={() => handleVote(item.id)}
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono transition-all ${
-                        voted
-                          ? 'bg-[#16c847]/15 text-[#16c847] border border-[#16c847]/30 font-bold'
-                          : 'bg-[#FAF7F2] hover:bg-[#F0EAE1] text-[#141414] border border-black/[0.08]'
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all ${
+                        userVoted
+                          ? 'bg-[#00F076] text-black shadow-sm'
+                          : isDark
+                            ? 'bg-white/5 text-slate-300 hover:bg-white/10'
+                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                       }`}
                     >
-                      <Vote className="w-3.5 h-3.5 text-[#0F4C81]" />
-                      <span>{voted ? 'Upvoted!' : 'Vote'}</span>
-                      <span className="text-black/40 font-mono">({votes[item.id]})</span>
+                      <Vote className="w-3.5 h-3.5" />
+                      <span>{userVoted ? 'Voted' : 'Upvote'}</span>
+                      <span className="opacity-60 font-normal">({votes[item.id]})</span>
                     </button>
 
-                    {item.demoLink ? (
+                    {item.demoLink && (
                       <a
                         href={item.demoLink}
-                        className="text-xs font-mono font-bold text-[#0F4C81] hover:underline flex items-center gap-1"
+                        className="text-xs font-mono text-[#00F076] hover:underline flex items-center gap-1 font-semibold"
                       >
-                        <span>Try Demo</span>
+                        <span>Interactive Demo</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
-                    ) : (
-                      <span className="text-[11px] font-mono text-[#666055]">Coming Soon</span>
                     )}
                   </div>
                 </div>
@@ -222,4 +252,3 @@ export const RoadmapSection: React.FC = () => {
     </section>
   );
 };
-

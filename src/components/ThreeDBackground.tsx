@@ -2,9 +2,13 @@ import React, { useEffect, useRef } from 'react';
 
 interface ThreeDBackgroundProps {
   accentColor?: string;
+  isDark?: boolean;
 }
 
-export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor = '#F59E0B' }) => {
+export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ 
+  accentColor = '#00F076',
+  isDark = true 
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -36,7 +40,7 @@ export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor 
     };
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Subtle ambient dust/particles from the artwork palette
+    // Subtle ambient dust/particles from the tech palette
     const PARTICLE_COUNT = 55;
     interface Particle3D {
       x: number;
@@ -48,7 +52,9 @@ export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor 
     }
 
     const particles: Particle3D[] = [];
-    const colors = [accentColor, '#F59E0B', '#0F4C81', '#E87A90', '#1B4332', '#D97706'];
+    const colors = isDark 
+      ? [accentColor, '#00F076', '#00E5FF', '#8B5CF6', '#3B82F6', '#10B981']
+      : [accentColor, '#0F4C81', '#059669', '#4F46E5', '#2563EB', '#D97706'];
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       particles.push({
@@ -88,7 +94,7 @@ export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor 
         projectedCoords.push({ x: projX, y: projY, z: p.z });
 
         if (projX >= 0 && projX <= width && projY >= 0 && projY <= height) {
-          const alpha = (1 - p.z / 1000) * 0.4;
+          const alpha = (1 - p.z / 1000) * (isDark ? 0.45 : 0.25);
           ctx.beginPath();
           ctx.arc(projX, projY, p.size * scale, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
@@ -105,11 +111,11 @@ export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor 
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 100) {
-            const alpha = (1 - dist / 100) * 0.08 * (1 - projectedCoords[i].z / 1000);
+            const alpha = (1 - dist / 100) * (isDark ? 0.08 : 0.05) * (1 - projectedCoords[i].z / 1000);
             ctx.beginPath();
             ctx.moveTo(projectedCoords[i].x, projectedCoords[i].y);
             ctx.lineTo(projectedCoords[j].x, projectedCoords[j].y);
-            ctx.strokeStyle = '#0F4C81';
+            ctx.strokeStyle = isDark ? '#00F076' : '#0F4C81';
             ctx.globalAlpha = alpha;
             ctx.lineWidth = 0.75;
             ctx.stroke();
@@ -128,12 +134,13 @@ export const ThreeDBackground: React.FC<ThreeDBackgroundProps> = ({ accentColor 
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [accentColor]);
+  }, [accentColor, isDark]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-60"
+      className="fixed inset-0 pointer-events-none z-0"
+      style={{ opacity: isDark ? 0.65 : 0.4 }}
     />
   );
 };
